@@ -144,7 +144,7 @@ jobs:
       # https://github.com/JamesIves/github-pages-deploy-action
       - uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACCESS_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
           BASE_BRANCH: master
           BRANCH: gh-pages
           FOLDER: build/web
