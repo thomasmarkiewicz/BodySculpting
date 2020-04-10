@@ -1,4 +1,6 @@
+![](https://img.shields.io/github/v/release/thomasmarkiewicz/bodysculpting?include_prereleases&sort=semver)
 ![](https://github.com/thomasmarkiewicz/bodysculpting/workflows/Build/badge.svg?branch=master)
+![](https://codecov.io/gh/thomasmarkiewicz/bodysculpting/branch/master/graph/badge.svg)
 
 ![Body Sculpting Banner](/assets/github_banner.png)
 
