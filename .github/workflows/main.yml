@@ -112,8 +112,6 @@ jobs:
     name: Build apk
     steps:
       - uses: actions/checkout@v2
-        with:
-          persist-credentials: false
       - uses: subosito/flutter-action@v1
         with:
           #flutter-version: '1.12.14'
