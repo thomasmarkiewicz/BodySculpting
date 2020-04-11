@@ -1,8 +1,8 @@
 import 'package:bodysculpting/features/workout/domain/entities/units.dart';
 import 'package:bodysculpting/features/workout/domain/entities/workout.dart';
 import 'package:bodysculpting/features/workout/domain/entities/workout_summary.dart';
-import 'package:bodysculpting/features/workout/domain/repositories/abstract_workout_template_repository.dart';
-import 'package:bodysculpting/features/workout/domain/usecases/get_workout_templates.dart';
+import 'package:bodysculpting/features/workout/domain/repositories/abstract_routine_repository.dart';
+import 'package:bodysculpting/features/workout/domain/usecases/get_routines.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';

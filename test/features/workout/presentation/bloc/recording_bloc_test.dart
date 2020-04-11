@@ -5,7 +5,7 @@ import 'package:bodysculpting/features/workout/domain/entities/set.dart';
 import 'package:bodysculpting/features/workout/domain/entities/workout.dart';
 import 'package:bodysculpting/features/workout/domain/entities/workout_summary.dart';
 import 'package:bodysculpting/features/workout/domain/usecases/create_workout.dart';
-import 'package:bodysculpting/features/workout/domain/usecases/deleteWorkout.dart';
+import 'package:bodysculpting/features/workout/domain/usecases/delete_workout.dart';
 import 'package:bodysculpting/features/workout/domain/usecases/finish_workout.dart';
 import 'package:bodysculpting/features/workout/domain/usecases/update_target_weight.dart';
 import 'package:bodysculpting/features/workout/domain/usecases/update_workout_reps.dart';

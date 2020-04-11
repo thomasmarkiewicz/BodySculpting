@@ -2,7 +2,7 @@ import 'package:bodysculpting/core/error/failures.dart';
 import 'package:bodysculpting/core/usecases/usecase.dart';
 import 'package:bodysculpting/features/workout/domain/entities/workout.dart';
 import 'package:bodysculpting/features/workout/domain/entities/workout_summary.dart';
-import 'package:bodysculpting/features/workout/domain/repositories/abstract_workout_template_repository.dart';
+import 'package:bodysculpting/features/workout/domain/repositories/abstract_routine_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';

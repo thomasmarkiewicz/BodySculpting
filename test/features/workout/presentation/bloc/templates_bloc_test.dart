@@ -5,7 +5,7 @@ import 'package:bodysculpting/features/workout/domain/entities/exercise_set.dart
 import 'package:bodysculpting/features/workout/domain/entities/set.dart';
 import 'package:bodysculpting/features/workout/domain/entities/workout.dart';
 import 'package:bodysculpting/features/workout/domain/entities/workout_summary.dart';
-import 'package:bodysculpting/features/workout/domain/usecases/get_workout_templates.dart';
+import 'package:bodysculpting/features/workout/domain/usecases/get_routines.dart';
 import 'package:bodysculpting/features/workout/presentation/pages/templates/templates_bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
