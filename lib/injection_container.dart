@@ -3,13 +3,11 @@ import 'package:bodysculpting/features/workout/domain/usecases/get_workout_summa
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'features/workout/data/datasources/abstract_json_local_data_source.dart';
 import 'features/workout/data/datasources/abstract_workout_local_data_source.dart';
 import 'features/workout/data/datasources/abstract_routine_local_data_source.dart';
 import 'features/workout/data/datasources/hive_local_data_source.dart';
 import 'features/workout/data/datasources/hive_routine_local_data_source.dart';
-import 'features/workout/data/datasources/json_local_data_source.dart';
-import 'features/workout/data/datasources/workout_local_data_source.dart';
+import 'features/workout/data/datasources/hive_workout_local_data_source.dart';
 import 'features/workout/data/repositories/routine_repository.dart';
 import 'features/workout/data/repositories/workout_repository.dart';
 import 'features/workout/domain/repositories/abstract_workout_repository.dart';
@@ -82,17 +80,11 @@ Future<void> repositories() async {
 
 // Singletons
 Future<void> datasources() async {
-  sl.registerLazySingleton<AbstractJsonLocalDataSource>(
-      () => JsonLocalDataSource());
-/*
-  sl.registerLazySingleton<AbstractRoutineLocalDataSource>(
-      () => RoutineLocalDataSource(sl()));
-*/
-  sl.registerLazySingleton<AbstractWorkoutLocalDataSource>(
-      () => WorkoutLocalDataSource(sl()));
-
   await Hive.initFlutter();
   await HiveLocalDataSource.init();
+
+  sl.registerLazySingleton<AbstractWorkoutLocalDataSource>(
+      () => HiveWorkoutLocalDataSource());
 
   sl.registerLazySingleton<AbstractRoutineLocalDataSource>(
       () => HiveRoutineLocalDataSource());

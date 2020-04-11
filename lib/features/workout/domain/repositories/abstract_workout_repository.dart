@@ -12,12 +12,13 @@ abstract class AbstractWorkoutRepository {
   });
   Future<Either<Failure, Workout>> getWorkout({
     @required DateTime start,
-    @required Option<DateTime> end,
+    @required Activity activity,
   });
   Future<Either<Failure, Workout>> createWorkout(Workout workout);
   Future<Either<Failure, Workout>> updateWorkout(Workout workout);
   Future<Either<Failure, Workout>> deleteWorkout({
     @required DateTime start,
     @required DateTime end,
+    @required Activity activity,
   });
 }

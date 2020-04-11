@@ -27,10 +27,14 @@ class WorkoutRepository implements AbstractWorkoutRepository {
   Future<Either<Failure, Workout>> deleteWorkout({
     DateTime start,
     DateTime end,
+    Activity activity,
   }) async {
     try {
-      final result =
-          await localDataSource.deleteWorkout(start: start, end: end);
+      final result = await localDataSource.deleteWorkout(
+        start: start,
+        end: end,
+        activity: activity,
+      );
       return Right(result);
     } on CacheException {
       return Left(CacheFailure());
@@ -46,10 +50,11 @@ class WorkoutRepository implements AbstractWorkoutRepository {
   @override
   Future<Either<Failure, Workout>> getWorkout({
     @required DateTime start,
-    @required Option<DateTime> end,
+    @required Activity activity,
   }) async {
     try {
-      final result = await localDataSource.getWorkout(start: start, end: end);
+      final result =
+          await localDataSource.getWorkout(start: start, activity: activity);
       return Right(result);
     } on CacheException {
       return Left(CacheFailure());

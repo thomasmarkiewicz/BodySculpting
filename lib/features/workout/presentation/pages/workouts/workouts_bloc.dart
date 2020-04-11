@@ -51,7 +51,7 @@ class WorkoutsBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
     final result = await getWorkout(
       WorkoutParams(
         start: event.workoutSummary.start.getOrElse(() => DateTime.now()),
-        end: event.workoutSummary.end,
+        activity: event.workoutSummary.activity,
       ),
     );
     yield result.fold(
