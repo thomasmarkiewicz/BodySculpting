@@ -24,6 +24,7 @@ void main() {
   });
 
   final testWorkout = WorkoutModel(
+    routineId: "1",
     activity: Activity.lift,
     name: 'Barbbell Lifts 3x10 A',
     description: some('Squat, Bench, Press'),
@@ -33,62 +34,74 @@ void main() {
     summary: some("Optional summary"),
     supersets: [
       [
-        ExerciseSetModel(exerciseId: '1', exerciseName: 'Squats', targetWeight: 135, sets: [
-          SetModel(
-              targetReps: 10,
-              targetRest: 180,
-              reps: some(10),
-              weight: some(135)),
-          SetModel(
-              targetReps: 10,
-              targetRest: 180,
-              reps: some(10),
-              weight: some(135)),
-          SetModel(
-              targetReps: 10,
-              targetRest: 180,
-              reps: some(10),
-              weight: some(135)),
-        ])
+        ExerciseSetModel(
+            exerciseId: '1',
+            exerciseName: 'Squats',
+            targetWeight: 135,
+            sets: [
+              SetModel(
+                  targetReps: 10,
+                  targetRest: 180,
+                  reps: some(10),
+                  weight: some(135)),
+              SetModel(
+                  targetReps: 10,
+                  targetRest: 180,
+                  reps: some(10),
+                  weight: some(135)),
+              SetModel(
+                  targetReps: 10,
+                  targetRest: 180,
+                  reps: some(10),
+                  weight: some(135)),
+            ])
       ],
       [
-        ExerciseSetModel(exerciseId: '1', exerciseName: 'Squats', targetWeight: 135, sets: [
-          SetModel(
-              targetReps: 10,
-              targetRest: 180,
-              reps: some(9),
-              weight: some(135)),
-          SetModel(
-              targetReps: 10,
-              targetRest: 180,
-              reps: some(9),
-              weight: some(135)),
-          SetModel(
-              targetReps: 10,
-              targetRest: 180,
-              reps: some(8),
-              weight: some(130)),
-        ]),
-        ExerciseSetModel(exerciseId: '2', exerciseName: 'Bench Press', targetWeight: 135, sets: [
-          SetModel(
-            targetReps: 10,
-            targetRest: 180,
-            reps: none(),
-            weight: none(),
-          ),
-          SetModel(
-            targetReps: 10,
-            targetRest: 180,
-            reps: none(),
-            weight: none(),
-          ),
-          SetModel(
-            targetReps: 10,
-            targetRest: 180,
-            reps: none(),
-            weight: none(),
-          ),
-        ]),
+        ExerciseSetModel(
+            exerciseId: '1',
+            exerciseName: 'Squats',
+            targetWeight: 135,
+            sets: [
+              SetModel(
+                  targetReps: 10,
+                  targetRest: 180,
+                  reps: some(9),
+                  weight: some(135)),
+              SetModel(
+                  targetReps: 10,
+                  targetRest: 180,
+                  reps: some(9),
+                  weight: some(135)),
+              SetModel(
+                  targetReps: 10,
+                  targetRest: 180,
+                  reps: some(8),
+                  weight: some(130)),
+            ]),
+        ExerciseSetModel(
+            exerciseId: '2',
+            exerciseName: 'Bench Press',
+            targetWeight: 135,
+            sets: [
+              SetModel(
+                targetReps: 10,
+                targetRest: 180,
+                reps: none(),
+                weight: none(),
+              ),
+              SetModel(
+                targetReps: 10,
+                targetRest: 180,
+                reps: none(),
+                weight: none(),
+              ),
+              SetModel(
+                targetReps: 10,
+                targetRest: 180,
+                reps: none(),
+                weight: none(),
+              ),
+            ]),
       ]
     ],
   );

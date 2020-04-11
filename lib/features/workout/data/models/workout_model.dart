@@ -10,6 +10,7 @@ import 'exercise_set_model.dart';
 // TODO: refactor to extend WorkoutSummaryModel instead to remove code duplication?
 class WorkoutModel extends Workout {
   WorkoutModel({
+    @required String routineId,
     @required String name,
     @required Activity activity,
     @required UnitsModel units,
@@ -19,6 +20,7 @@ class WorkoutModel extends Workout {
     Option<String> summary,
     @required List<List<ExerciseSetModel>> supersets,
   }) : super(
+          routineId: routineId,
           name: name,
           activity: activity,
           units: units,
@@ -41,6 +43,7 @@ class WorkoutModel extends Workout {
     }
 
     return WorkoutModel(
+      routineId: workout.routineId,
       name: workout.name,
       activity: workout.activity,
       units: UnitsModel.from(workout.units),
@@ -65,6 +68,7 @@ class WorkoutModel extends Workout {
     }
 
     return WorkoutModel(
+      routineId: json['routine_id'],
       name: json['name'],
       activity: Activity.values
           .firstWhere((e) => e.toString() == 'Activity.' + json['activity']),
@@ -91,6 +95,7 @@ class WorkoutModel extends Workout {
     }
 
     final map = {
+      'routine_id': routineId,
       'name': name,
       'activity': describeEnum(activity),
       'units': (units as UnitsModel).toJson(),

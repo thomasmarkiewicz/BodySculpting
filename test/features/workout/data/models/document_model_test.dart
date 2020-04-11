@@ -25,6 +25,7 @@ void main() {
     ],
     routines: [
       WorkoutModel(
+          routineId: "1",
           activity: Activity.lift,
           name: "Barbbell Lifts 5x5 A",
           description: some("Squat, Bench, Deadlift"),
@@ -65,51 +66,53 @@ void main() {
             ]
           ]),
       WorkoutModel(
-          activity: Activity.lift,
-          name: "Barbbell Lifts 5x5 B",
-          description: some("Squat, Shoulder Press, Rows"),
-          units: UnitsModel(weight: 'lb', distance: 'mi'),
-          supersets: [
-            [
-              ExerciseSetModel(
-                  exerciseId: "0537cd19644c",
-                  exerciseName: "Squats",
-                  targetWeight: 45,
-                  sets: [
-                    SetModel(targetReps: 5, targetRest: 180),
-                    SetModel(targetReps: 5, targetRest: 180),
-                    SetModel(targetReps: 5, targetRest: 180),
-                    SetModel(targetReps: 5, targetRest: 180),
-                    SetModel(targetReps: 5, targetRest: 180)
-                  ])
-            ],
-            [
-              ExerciseSetModel(
-                  exerciseId: "7eef10e8aaed",
-                  exerciseName: "Shoulder Press",
-                  targetWeight: 45,
-                  sets: [
-                    SetModel(targetReps: 5, targetRest: 180),
-                    SetModel(targetReps: 5, targetRest: 180),
-                    SetModel(targetReps: 5, targetRest: 180),
-                    SetModel(targetReps: 5, targetRest: 180),
-                    SetModel(targetReps: 5, targetRest: 180)
-                  ])
-            ],
-            [
-              ExerciseSetModel(
-                  exerciseId: "056672996981",
-                  exerciseName: "Rows",
-                  targetWeight: 45,
-                  sets: [
-                    SetModel(targetReps: 5, targetRest: 180),
-                    SetModel(targetReps: 5, targetRest: 180),
-                    SetModel(targetReps: 5, targetRest: 180),
-                    SetModel(targetReps: 5, targetRest: 180),
-                    SetModel(targetReps: 5, targetRest: 180)
-                  ])
-            ]
-          ]),
+        routineId: "2",
+        activity: Activity.lift,
+        name: "Barbbell Lifts 5x5 B",
+        description: some("Squat, Shoulder Press, Rows"),
+        units: UnitsModel(weight: 'lb', distance: 'mi'),
+        supersets: [
+          [
+            ExerciseSetModel(
+                exerciseId: "0537cd19644c",
+                exerciseName: "Squats",
+                targetWeight: 45,
+                sets: [
+                  SetModel(targetReps: 5, targetRest: 180),
+                  SetModel(targetReps: 5, targetRest: 180),
+                  SetModel(targetReps: 5, targetRest: 180),
+                  SetModel(targetReps: 5, targetRest: 180),
+                  SetModel(targetReps: 5, targetRest: 180)
+                ])
+          ],
+          [
+            ExerciseSetModel(
+                exerciseId: "7eef10e8aaed",
+                exerciseName: "Shoulder Press",
+                targetWeight: 45,
+                sets: [
+                  SetModel(targetReps: 5, targetRest: 180),
+                  SetModel(targetReps: 5, targetRest: 180),
+                  SetModel(targetReps: 5, targetRest: 180),
+                  SetModel(targetReps: 5, targetRest: 180),
+                  SetModel(targetReps: 5, targetRest: 180)
+                ])
+          ],
+          [
+            ExerciseSetModel(
+                exerciseId: "056672996981",
+                exerciseName: "Rows",
+                targetWeight: 45,
+                sets: [
+                  SetModel(targetReps: 5, targetRest: 180),
+                  SetModel(targetReps: 5, targetRest: 180),
+                  SetModel(targetReps: 5, targetRest: 180),
+                  SetModel(targetReps: 5, targetRest: 180),
+                  SetModel(targetReps: 5, targetRest: 180)
+                ])
+          ]
+        ],
+      ),
     ],
   );
 
@@ -137,6 +140,7 @@ void main() {
         ],
         "routines": [
           {
+            "routine_id": "1",
             "activity": "lift",
             "name": "Barbbell Lifts 5x5 A",
             "description": "Squat, Bench, Deadlift",
@@ -183,6 +187,7 @@ void main() {
             ]
           },
           {
+            "routine_id": "2",
             "activity": "lift",
             "name": "Barbbell Lifts 5x5 B",
             "description": "Squat, Shoulder Press, Rows",

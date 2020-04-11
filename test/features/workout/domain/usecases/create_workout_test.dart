@@ -19,6 +19,7 @@ void main() {
   });
 
   final tWorkout = Workout(
+    routineId: "1",
     start: some(DateTime.now()),
     end: none(),
     summary: none(),

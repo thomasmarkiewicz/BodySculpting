@@ -18,6 +18,7 @@ void main() {
   final jsonLocalDataSource = JsonLocalDataSource();
 
   final testWorkoutFinished = WorkoutModel(
+    routineId: "1",
     activity: Activity.lift,
     name: 'Barbbell Lifts 3x10 A',
     description: some('Squat, Bench, Press'),
@@ -100,6 +101,7 @@ void main() {
   );
 
   final testWorkoutActive = WorkoutModel(
+    routineId: testWorkoutFinished.routineId,
     name: testWorkoutFinished.name,
     activity: testWorkoutFinished.activity,
     start: testWorkoutFinished.start,
@@ -178,6 +180,7 @@ void main() {
       await jsonLocalDataSource.writeWorkout(testWorkoutActive);
 
       final testUpdatedWorkoutActive = WorkoutModel(
+        routineId: testWorkoutFinished.routineId,
         name: testWorkoutActive.name,
         activity: testWorkoutActive.activity,
         start: testWorkoutActive.start,

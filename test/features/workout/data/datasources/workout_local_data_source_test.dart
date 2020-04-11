@@ -33,6 +33,7 @@ void main() {
   });
 
   final testWorkout = WorkoutModel(
+    routineId: "1",
     activity: Activity.lift,
     name: 'Barbbell Lifts 3x10 A',
     description: some('Squat, Bench, Press'),
@@ -87,29 +88,30 @@ void main() {
                   weight: some(130)),
             ]),
         ExerciseSetModel(
-            exerciseId: '2',
-            exerciseName: 'Bench Press',
-            targetWeight: 135,
-            sets: [
-              SetModel(
-                targetReps: 10,
-                targetRest: 180,
-                reps: none(),
-                weight: none(),
-              ),
-              SetModel(
-                targetReps: 10,
-                targetRest: 180,
-                reps: none(),
-                weight: none(),
-              ),
-              SetModel(
-                targetReps: 10,
-                targetRest: 180,
-                reps: none(),
-                weight: none(),
-              ),
-            ]),
+          exerciseId: '2',
+          exerciseName: 'Bench Press',
+          targetWeight: 135,
+          sets: [
+            SetModel(
+              targetReps: 10,
+              targetRest: 180,
+              reps: none(),
+              weight: none(),
+            ),
+            SetModel(
+              targetReps: 10,
+              targetRest: 180,
+              reps: none(),
+              weight: none(),
+            ),
+            SetModel(
+              targetReps: 10,
+              targetRest: 180,
+              reps: none(),
+              weight: none(),
+            ),
+          ],
+        ),
       ]
     ],
   );

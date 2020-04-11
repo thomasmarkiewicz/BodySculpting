@@ -13,6 +13,7 @@ class Workout extends WorkoutSummary {
   List<Object> get props => [supersets];
 
   Workout({
+    @required String routineId,
     @required String name,
     @required Activity activity,
     @required Units units,
@@ -22,6 +23,7 @@ class Workout extends WorkoutSummary {
     Option<String> summary,
     @required this.supersets,
   }) : super(
+          routineId: routineId,
           name: name,
           activity: activity,
           units: units,
@@ -33,6 +35,7 @@ class Workout extends WorkoutSummary {
 
   Workout started() {
     return Workout(
+      routineId: this.routineId,
       name: this.name,
       activity: this.activity,
       units: this.units,
@@ -46,6 +49,7 @@ class Workout extends WorkoutSummary {
 
   Workout finished() {
     return Workout(
+      routineId: this.routineId,
       name: this.name,
       activity: this.activity,
       units: this.units,
@@ -81,6 +85,7 @@ class Workout extends WorkoutSummary {
     }
 
     return Workout(
+      routineId: this.routineId,
       name: this.name,
       activity: this.activity,
       units: this.units,
@@ -91,7 +96,6 @@ class Workout extends WorkoutSummary {
       supersets: supersets,
     );
   }
-
 
   // TODO: write a test for this
   Workout updateTargetWeight({
@@ -106,7 +110,10 @@ class Workout extends WorkoutSummary {
           final superset = List.of(ss
               .asMap()
               .map((i, s) => (i == exerciseSetIndex)
-                  ? MapEntry(i, s.updateTargetWeight(weight)) // TODO: refactor? this is the only line that is different then in the method above
+                  ? MapEntry(
+                      i,
+                      s.updateTargetWeight(
+                          weight)) // TODO: refactor? this is the only line that is different then in the method above
                   : MapEntry(i, s))
               .values);
           supersets.add(superset);
@@ -117,6 +124,7 @@ class Workout extends WorkoutSummary {
     }
 
     return Workout(
+      routineId: this.routineId,
       name: this.name,
       activity: this.activity,
       units: this.units,

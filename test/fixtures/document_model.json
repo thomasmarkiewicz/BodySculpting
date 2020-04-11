@@ -25,6 +25,7 @@
   ],
   "routines": [
     {
+      "routine_id": "1",
       "activity": "lift",
       "name": "Barbbell Lifts 5x5 A",
       "description": "Squat, Bench, Deadlift",
@@ -72,6 +73,7 @@
       ]
     },
     {
+      "routine_id": "2",
       "activity": "lift",
       "name": "Barbbell Lifts 5x5 B",
       "description": "Squat, Shoulder Press, Rows",
