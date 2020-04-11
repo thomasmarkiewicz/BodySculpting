@@ -23,7 +23,7 @@
       "name": "Deadlifts"
     }
   ],
-  "workout_templates": [
+  "routines": [
     {
       "activity": "lift",
       "name": "Barbbell Lifts 5x5 A",

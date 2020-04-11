@@ -7,14 +7,14 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-class GetWorkoutTemplates implements Usecase<List<Workout>, Params> {
-  final AbstractWorkoutTemplateRepository repository;
+class GetRoutines implements Usecase<List<Workout>, Params> {
+  final AbstractRoutineRepository repository;
 
-  GetWorkoutTemplates(this.repository);
+  GetRoutines(this.repository);
 
   @override
   Future<Either<Failure, List<Workout>>> call(Params params) async {
-    return await repository.getWorkoutTemplates(params.activity);
+    return await repository.getRoutines(params.activity);
   }
 }
 

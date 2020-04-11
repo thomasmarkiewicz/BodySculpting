@@ -12,16 +12,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 class MockLocalDataSource extends Mock
-    implements AbstractWorkoutTemplatesLocalDataSource {}
+    implements AbstractRoutineLocalDataSource {}
 
 void main() {
-  WorkoutTemplateRepository repository;
+  RoutineRepository repository;
   MockLocalDataSource mockLocalDataSource;
 
   setUp(() {
     mockLocalDataSource = MockLocalDataSource();
-    repository =
-        WorkoutTemplateRepository(localDataSource: mockLocalDataSource);
+    repository = RoutineRepository(localDataSource: mockLocalDataSource);
   });
 
   group('getWorkoutTemplates', () {
@@ -33,22 +32,30 @@ void main() {
         units: UnitsModel(weight: "lb", distance: "km"),
         supersets: [
           [
-            ExerciseSetModel(exerciseId: '1', exerciseName: 'Squats', targetWeight: 45, sets: [
-              SetModel(targetReps: 10, targetRest: 0),
-              SetModel(targetReps: 10, targetRest: 0),
-              SetModel(targetReps: 10, targetRest: 0)
-            ])
+            ExerciseSetModel(
+                exerciseId: '1',
+                exerciseName: 'Squats',
+                targetWeight: 45,
+                sets: [
+                  SetModel(targetReps: 10, targetRest: 0),
+                  SetModel(targetReps: 10, targetRest: 0),
+                  SetModel(targetReps: 10, targetRest: 0)
+                ])
           ],
           [
-            ExerciseSetModel(exerciseId: '1', exerciseName: 'Squats', targetWeight: 45,  sets: [
-              SetModel(targetReps: 10, targetRest: 0),
-              SetModel(targetReps: 10, targetRest: 0),
-              SetModel(targetReps: 10, targetRest: 0)
-            ]),
+            ExerciseSetModel(
+                exerciseId: '1',
+                exerciseName: 'Squats',
+                targetWeight: 45,
+                sets: [
+                  SetModel(targetReps: 10, targetRest: 0),
+                  SetModel(targetReps: 10, targetRest: 0),
+                  SetModel(targetReps: 10, targetRest: 0)
+                ]),
             ExerciseSetModel(
                 exerciseId: '2',
                 exerciseName: 'Bench Press',
-                targetWeight: 45, 
+                targetWeight: 45,
                 sets: [
                   SetModel(targetReps: 10, targetRest: 180),
                   SetModel(targetReps: 10, targetRest: 180),
@@ -63,30 +70,29 @@ void main() {
         'returns localWorkoutTemplates when data is present in the local data source',
         () async {
       // setup
-      when(mockLocalDataSource.getWorkoutTemplates(any))
+      when(mockLocalDataSource.getRoutines(any))
           .thenAnswer((_) async => Future.value(testWorkoutTemplateList));
 
       // test
-      var result = await repository.getWorkoutTemplates(Activity.lift);
+      var result = await repository.getRoutines(Activity.lift);
 
       // check
       expect(result, Right(testWorkoutTemplateList));
-      verify(mockLocalDataSource.getWorkoutTemplates(Activity.lift));
+      verify(mockLocalDataSource.getRoutines(Activity.lift));
       verifyNoMoreInteractions(mockLocalDataSource);
     });
 
     test('returns CacheFailure when local data source throws CacheException',
         () async {
       // setup
-      when(mockLocalDataSource.getWorkoutTemplates(any))
-          .thenThrow(CacheException());
+      when(mockLocalDataSource.getRoutines(any)).thenThrow(CacheException());
 
       // test
-      var result = await repository.getWorkoutTemplates(Activity.lift);
+      var result = await repository.getRoutines(Activity.lift);
 
       // check
       expect(result, Left(CacheFailure()));
-      verify(mockLocalDataSource.getWorkoutTemplates(Activity.lift));
+      verify(mockLocalDataSource.getRoutines(Activity.lift));
       verifyNoMoreInteractions(mockLocalDataSource);
     });
   });

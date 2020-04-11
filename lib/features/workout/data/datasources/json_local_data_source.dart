@@ -39,7 +39,7 @@ class JsonLocalDataSource implements AbstractJsonLocalDataSource {
   // TODO: Reconsider this approach
   //       I fear this DocumentModel object is taking up memory when app is running unnecessarily.
   //       It would be better if it was distributed as a json asset file somehow
-  //       Also probably want to split out exercises+workouttemplates into its own folder
+  //       Also probably want to split out exercises+routines into its own folder
   //       so new templates can be downloaded and added without replacing this entire file.
   //       Also saving workout recordings probably needs to go into its own list of files as well.
   DocumentModel get _defaultDocumentModel => DocumentModel(
@@ -76,7 +76,7 @@ class JsonLocalDataSource implements AbstractJsonLocalDataSource {
           ExerciseModel(
               id: "b9191529d1cc", name: "Dumbbell Bent Over Lateral Raises"),
         ],
-        workoutTemplates: [
+        routines: [
           WorkoutModel(
             activity: Activity.lift,
             name: "5x5 Barbbell Lifts A",

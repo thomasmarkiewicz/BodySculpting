@@ -8,15 +8,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 class MockWorkoutTemplateRepository extends Mock
-    implements AbstractWorkoutTemplateRepository {}
+    implements AbstractRoutineRepository {}
 
 void main() {
   MockWorkoutTemplateRepository mockRepository;
-  GetWorkoutTemplates getWorkoutTemplates;
+  GetRoutines getWorkoutTemplates;
 
   setUp(() {
     mockRepository = MockWorkoutTemplateRepository();
-    getWorkoutTemplates = GetWorkoutTemplates(mockRepository);
+    getWorkoutTemplates = GetRoutines(mockRepository);
   });
 
   final tActivity = Activity.lift;
@@ -32,7 +32,7 @@ void main() {
 
   test('gets workout templates from the repository', () async {
     // setup
-    when(mockRepository.getWorkoutTemplates(any))
+    when(mockRepository.getRoutines(any))
         .thenAnswer((_) async => Right(tWorkoutTemplates));
 
     // test
@@ -40,7 +40,7 @@ void main() {
 
     // check
     expect(result, Right(tWorkoutTemplates));
-    verify(mockRepository.getWorkoutTemplates(tActivity));
+    verify(mockRepository.getRoutines(tActivity));
     verifyNoMoreInteractions(mockRepository);
   });
 }

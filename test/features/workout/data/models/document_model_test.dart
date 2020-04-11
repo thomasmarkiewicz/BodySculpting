@@ -23,7 +23,7 @@ void main() {
       ExerciseModel(id: "056672996981", name: "Rows"),
       ExerciseModel(id: "ca1240b16dab", name: "Deadlifts"),
     ],
-    workoutTemplates: [
+    routines: [
       WorkoutModel(
           activity: Activity.lift,
           name: "Barbbell Lifts 5x5 A",
@@ -135,15 +135,12 @@ void main() {
           {"id": "056672996981", "name": "Rows"},
           {"id": "ca1240b16dab", "name": "Deadlifts"}
         ],
-        "workout_templates": [
+        "routines": [
           {
             "activity": "lift",
             "name": "Barbbell Lifts 5x5 A",
             "description": "Squat, Bench, Deadlift",
-            "units": {
-              "weight": "lb",
-              "distance": "mi"
-            },
+            "units": {"weight": "lb", "distance": "mi"},
             "supersets": [
               [
                 {
@@ -189,10 +186,7 @@ void main() {
             "activity": "lift",
             "name": "Barbbell Lifts 5x5 B",
             "description": "Squat, Shoulder Press, Rows",
-            "units": {
-              "weight": "lb",
-              "distance": "mi"
-            },
+            "units": {"weight": "lb", "distance": "mi"},
             "supersets": [
               [
                 {

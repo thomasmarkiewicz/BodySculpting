@@ -16,9 +16,9 @@ const String INVALID_ACTIVITY_FAILURE_MESSAGE =
     'Invalid Activity - must be a one of: lift, swim, bike, run, other';
 
 class TemplatesBloc extends Bloc<TemplatesEvent, TemplatesState> {
-  final GetWorkoutTemplates getWorkoutTemplates;
+  final GetRoutines getWorkoutTemplates;
 
-  TemplatesBloc({@required GetWorkoutTemplates getWorkoutTemplates})
+  TemplatesBloc({@required GetRoutines getWorkoutTemplates})
       : assert(getWorkoutTemplates != null),
         this.getWorkoutTemplates = getWorkoutTemplates;
 

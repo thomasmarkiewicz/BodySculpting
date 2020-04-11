@@ -4,16 +4,15 @@ import 'package:bodysculpting/features/workout/domain/entities/workout_summary.d
 import 'abstract_json_local_data_source.dart';
 import 'abstract_workout_templates_local_data_source.dart';
 
-class WorkoutTemplatesLocalDataSource
-    implements AbstractWorkoutTemplatesLocalDataSource {
+class RoutineLocalDataSource implements AbstractRoutineLocalDataSource {
   final AbstractJsonLocalDataSource jsonLocalDataSource;
 
-  WorkoutTemplatesLocalDataSource(this.jsonLocalDataSource);
+  RoutineLocalDataSource(this.jsonLocalDataSource);
 
-  Future<List<WorkoutModel>> getWorkoutTemplates(Activity activity) async {
+  Future<List<WorkoutModel>> getRoutines(Activity activity) async {
     final document = await jsonLocalDataSource.readDocument();
-    final workoutTemplates =
-        document.workoutTemplates.where((t) => t.activity == activity).toList();
-    return workoutTemplates;
+    final routines =
+        document.routines.where((r) => r.activity == activity).toList();
+    return routines;
   }
 }

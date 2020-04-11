@@ -2,7 +2,6 @@ import 'package:bodysculpting/features/workout/data/repositories/workout_templat
 import 'package:bodysculpting/features/workout/domain/usecases/finish_workout.dart';
 import 'package:bodysculpting/features/workout/domain/usecases/get_workout_summaries.dart';
 import 'package:get_it/get_it.dart';
-
 import 'features/workout/data/datasources/abstract_json_local_data_source.dart';
 import 'features/workout/data/datasources/abstract_workout_local_data_source.dart';
 import 'features/workout/data/datasources/abstract_workout_templates_local_data_source.dart';
@@ -57,7 +56,7 @@ Future<void> blocs() async {
 
 // Singletons
 Future<void> usecases() async {
-  sl.registerLazySingleton(() => GetWorkoutTemplates(sl()));
+  sl.registerLazySingleton(() => GetRoutines(sl()));
   sl.registerLazySingleton(() => CreateWorkout(sl()));
   sl.registerLazySingleton(() => UpdateWorkoutReps(sl()));
   sl.registerLazySingleton(() => FinishWorkout(sl()));
@@ -69,8 +68,8 @@ Future<void> usecases() async {
 
 // Singletons
 Future<void> repositories() async {
-  sl.registerLazySingleton<AbstractWorkoutTemplateRepository>(
-    () => WorkoutTemplateRepository(localDataSource: sl()),
+  sl.registerLazySingleton<AbstractRoutineRepository>(
+    () => RoutineRepository(localDataSource: sl()),
   );
 
   sl.registerLazySingleton<AbstractWorkoutRepository>(
@@ -80,8 +79,8 @@ Future<void> repositories() async {
 
 // Singletons
 Future<void> datasources() async {
-  sl.registerLazySingleton<AbstractWorkoutTemplatesLocalDataSource>(
-      () => WorkoutTemplatesLocalDataSource(sl()));
+  sl.registerLazySingleton<AbstractRoutineLocalDataSource>(
+      () => RoutineLocalDataSource(sl()));
 
   sl.registerLazySingleton<AbstractWorkoutLocalDataSource>(
       () => WorkoutLocalDataSource(sl()));

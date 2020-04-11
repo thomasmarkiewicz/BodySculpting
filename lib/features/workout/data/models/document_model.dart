@@ -8,16 +8,16 @@ class DocumentModel extends Equatable {
   final String version;
   final int syncCounter;
   final List<ExerciseModel> exercises;
-  final List<WorkoutModel> workoutTemplates;
+  final List<WorkoutModel> routines;
 
   @override
-  List<Object> get props => [version, syncCounter, exercises, workoutTemplates];
+  List<Object> get props => [version, syncCounter, exercises, routines];
 
   DocumentModel({
     @required this.version,
     @required this.syncCounter,
     @required this.exercises,
-    @required this.workoutTemplates,
+    @required this.routines,
   });
 
   factory DocumentModel.fromJson(Map<String, dynamic> json) {
@@ -26,16 +26,16 @@ class DocumentModel extends Equatable {
         ? exercises.map((s) => ExerciseModel.fromJson(s)).toList()
         : List<ExerciseModel>();
 
-    final workoutTemplates = json['workout_templates'] as List;
-    List<WorkoutModel> workoutTemplateList = workoutTemplates != null
-        ? workoutTemplates.map((s) => WorkoutModel.fromJson(s)).toList()
+    final routines = json['routines'] as List;
+    List<WorkoutModel> routineList = routines != null
+        ? routines.map((s) => WorkoutModel.fromJson(s)).toList()
         : List<ExerciseModel>();
 
     return DocumentModel(
       version: json['version'],
       syncCounter: json['sync_counter'],
       exercises: exercisesList,
-      workoutTemplates: workoutTemplateList,
+      routines: routineList,
     );
   }
 
@@ -44,18 +44,15 @@ class DocumentModel extends Equatable {
         ? this.exercises.map((exercise) => exercise.toJson()).toList()
         : null;
 
-    List<Map> workoutTemplates = this.workoutTemplates != null
-        ? this
-            .workoutTemplates
-            .map((workoutTemplate) => workoutTemplate.toJson())
-            .toList()
+    List<Map> routines = this.routines != null
+        ? this.routines.map((routine) => routine.toJson()).toList()
         : null;
 
     return {
       'version': version,
       'sync_counter': syncCounter,
       'exercises': exercises,
-      'workout_templates': workoutTemplates
+      'routines': routines
     };
   }
 }

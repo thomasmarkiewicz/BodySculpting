@@ -17,11 +17,11 @@ class MockJsonLocalDataSource extends Mock
 
 void main() {
   MockJsonLocalDataSource mockJsonLocalDataSource;
-  WorkoutTemplatesLocalDataSource localDataSource;
+  RoutineLocalDataSource localDataSource;
 
   setUp(() {
     mockJsonLocalDataSource = MockJsonLocalDataSource();
-    localDataSource = WorkoutTemplatesLocalDataSource(mockJsonLocalDataSource);
+    localDataSource = RoutineLocalDataSource(mockJsonLocalDataSource);
   });
 
   group('getWorkoutTemplates', () {
@@ -36,7 +36,7 @@ void main() {
         ExerciseModel(id: "056672996981", name: "Rows"),
         ExerciseModel(id: "ca1240b16dab", name: "Deadlifts"),
       ],
-      workoutTemplates: [
+      routines: [
         WorkoutModel(
             activity: Activity.lift,
             name: "Barbbell Lifts 5x5 A",
@@ -131,7 +131,7 @@ void main() {
         () async {
       when(mockJsonLocalDataSource.readDocument())
           .thenAnswer((_) async => Future.value(testDocumentModel));
-      final result = await localDataSource.getWorkoutTemplates(Activity.lift);
+      final result = await localDataSource.getRoutines(Activity.lift);
       expect(result.length, 1); // because the other activity was not 'lift'
     });
 
@@ -140,7 +140,7 @@ void main() {
         () async {
       when(mockJsonLocalDataSource.readDocument())
           .thenAnswer((_) async => Future.value(testDocumentModel));
-      final result = await localDataSource.getWorkoutTemplates(Activity.other);
+      final result = await localDataSource.getRoutines(Activity.other);
       expect(result, isA<List<Workout>>());
       expect(result.length, 0);
     });
