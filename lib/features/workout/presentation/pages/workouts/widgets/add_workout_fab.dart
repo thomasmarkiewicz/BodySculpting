@@ -8,7 +8,7 @@ class AddWorkoutFloatingActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WorkoutBloc, WorkoutState>(builder: (context, state) {
+    return BlocBuilder<WorkoutsBloc, WorkoutsState>(builder: (context, state) {
       if (state is Initial) {
         return _buildFab(context);
       } else if (state is Ready) {
@@ -36,7 +36,7 @@ class AddWorkoutFloatingActionButton extends StatelessWidget {
         foregroundColor: Colors.white,
         tooltip: 'Continue workout',
         onPressed: () {
-          BlocProvider.of<WorkoutBloc>(context).add(
+          BlocProvider.of<WorkoutsBloc>(context).add(
             WorkoutSelected(summary),
           );
         });
@@ -110,7 +110,7 @@ class AddWorkoutFloatingActionButton extends StatelessWidget {
     @required BuildContext workoutPageContext,
     @required Activity activity,
   }) {
-    BlocProvider.of<WorkoutBloc>(workoutPageContext).add(
+    BlocProvider.of<WorkoutsBloc>(workoutPageContext).add(
       ActivitySelected(activity),
     );
     Navigator.pop(bottomSheetContext);

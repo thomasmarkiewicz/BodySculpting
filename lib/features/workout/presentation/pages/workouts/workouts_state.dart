@@ -2,19 +2,19 @@ import 'package:bodysculpting/features/workout/domain/entities/workout.dart';
 import 'package:bodysculpting/features/workout/domain/entities/workout_summary.dart';
 import 'package:equatable/equatable.dart';
 
-abstract class WorkoutState extends Equatable {
-  const WorkoutState();
+abstract class WorkoutsState extends Equatable {
+  const WorkoutsState();
 }
 
 // initial state
-class Initial extends WorkoutState {
+class Initial extends WorkoutsState {
   final List<WorkoutSummary> workoutSummaries = List<WorkoutSummary>();
 
   @override
   List<Object> get props => [workoutSummaries];
 }
 
-class Ready extends WorkoutState {
+class Ready extends WorkoutsState {
   final List<WorkoutSummary> workoutSummaries;
 
   @override
@@ -23,7 +23,7 @@ class Ready extends WorkoutState {
   const Ready(this.workoutSummaries);
 }
 
-class Final extends WorkoutState {
+class Final extends WorkoutsState {
   final Workout workout;
 
   Final(this.workout);
@@ -32,7 +32,7 @@ class Final extends WorkoutState {
   List<Object> get props => [workout];
 }
 
-class Adding extends WorkoutState {
+class Adding extends WorkoutsState {
   final Activity activity;
 
   Adding(this.activity);

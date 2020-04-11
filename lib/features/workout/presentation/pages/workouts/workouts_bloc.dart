@@ -5,11 +5,11 @@ import 'package:bloc/bloc.dart';
 import 'package:bodysculpting/features/workout/domain/usecases/get_workout_summaries.dart';
 import './bloc.dart';
 
-class WorkoutBloc extends Bloc<WorkoutEvent, WorkoutState> {
+class WorkoutsBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
   final GetWorkoutSummaries getWorkoutSummaries;
   final GetWorkout getWorkout;
 
-  WorkoutBloc({
+  WorkoutsBloc({
     @required GetWorkoutSummaries getWorkoutSummaries,
     @required GetWorkout getWorkout,
   })  : assert(getWorkoutSummaries != null),
@@ -18,11 +18,11 @@ class WorkoutBloc extends Bloc<WorkoutEvent, WorkoutState> {
         this.getWorkout = getWorkout;
 
   @override
-  WorkoutState get initialState => Initial();
+  WorkoutsState get initialState => Initial();
 
   @override
-  Stream<WorkoutState> mapEventToState(
-    WorkoutEvent event,
+  Stream<WorkoutsState> mapEventToState(
+    WorkoutsEvent event,
   ) async* {
     if (event is Refresh) {
       yield* _refresh(event);
@@ -33,7 +33,7 @@ class WorkoutBloc extends Bloc<WorkoutEvent, WorkoutState> {
     }
   }
 
-  Stream<WorkoutState> _refresh(Refresh event) async* {
+  Stream<WorkoutsState> _refresh(Refresh event) async* {
     final result = await getWorkoutSummaries(
       SummaryParams(
         start: DateTime.now().subtract(Duration(days: 365)),
@@ -47,7 +47,7 @@ class WorkoutBloc extends Bloc<WorkoutEvent, WorkoutState> {
     );
   }
 
-  Stream<WorkoutState> _workoutSelected(WorkoutSelected event) async* {
+  Stream<WorkoutsState> _workoutSelected(WorkoutSelected event) async* {
     final result = await getWorkout(
       WorkoutParams(
         start: event.workoutSummary.start.getOrElse(() => DateTime.now()),
@@ -61,6 +61,6 @@ class WorkoutBloc extends Bloc<WorkoutEvent, WorkoutState> {
   }
 }
 
-Stream<WorkoutState> _activitySelected(ActivitySelected event) async* {
+Stream<WorkoutsState> _activitySelected(ActivitySelected event) async* {
   yield Adding(event.activity);
 }

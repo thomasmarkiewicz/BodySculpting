@@ -18,8 +18,8 @@ import 'features/workout/domain/usecases/get_routines.dart';
 import 'features/workout/domain/usecases/update_target_weight.dart';
 import 'features/workout/domain/usecases/update_workout_reps.dart';
 import 'features/workout/presentation/pages/recording/recording_bloc.dart';
-import 'features/workout/presentation/pages/templates/templates_bloc.dart';
-import 'features/workout/presentation/pages/workout/workout_bloc.dart';
+import 'features/workout/presentation/pages/routines/routines_bloc.dart';
+import 'features/workout/presentation/pages/workouts/workouts_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -34,14 +34,14 @@ Future<void> init() async {
 
 // Register blocks as factories
 Future<void> blocs() async {
-  sl.registerFactory(() => WorkoutBloc(
+  sl.registerFactory(() => WorkoutsBloc(
         getWorkoutSummaries: sl(),
         getWorkout: sl(),
       ));
 
   sl.registerFactory(
-    () => TemplatesBloc(
-      getWorkoutTemplates: sl(),
+    () => RoutinesBloc(
+      getRoutines: sl(),
     ),
   );
 

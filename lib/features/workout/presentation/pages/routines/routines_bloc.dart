@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:bodysculpting/core/error/failures.dart';
 import 'package:bodysculpting/features/workout/domain/entities/workout.dart';
@@ -8,35 +7,35 @@ import 'package:bodysculpting/features/workout/domain/usecases/get_routines.dart
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-part 'templates_event.dart';
-part 'templates_state.dart';
+part 'routines_event.dart';
+part 'routines_state.dart';
 
 const String CACHE_FAILURE_MESSAGE = 'Cache Failure';
 const String INVALID_ACTIVITY_FAILURE_MESSAGE =
     'Invalid Activity - must be a one of: lift, swim, bike, run, other';
 
-class TemplatesBloc extends Bloc<TemplatesEvent, TemplatesState> {
-  final GetRoutines getWorkoutTemplates;
+class RoutinesBloc extends Bloc<RoutinesEvent, RoutinesState> {
+  final GetRoutines getRoutines;
 
-  TemplatesBloc({@required GetRoutines getWorkoutTemplates})
-      : assert(getWorkoutTemplates != null),
-        this.getWorkoutTemplates = getWorkoutTemplates;
-
-  @override
-  TemplatesState get initialState => Empty();
+  RoutinesBloc({@required GetRoutines getRoutines})
+      : assert(getRoutines != null),
+        this.getRoutines = getRoutines;
 
   @override
-  Stream<TemplatesState> mapEventToState(
-    TemplatesEvent event,
+  RoutinesState get initialState => Empty();
+
+  @override
+  Stream<RoutinesState> mapEventToState(
+    RoutinesEvent event,
   ) async* {
-    if (event is GetTemplates) {
+    if (event is FetchRoutines) {
       yield* _getWorkoutTemplates(event);
     }
   }
 
-  Stream<TemplatesState> _getWorkoutTemplates(GetTemplates event) async* {
+  Stream<RoutinesState> _getWorkoutTemplates(FetchRoutines event) async* {
     yield Loading();
-    final result = await getWorkoutTemplates(Params(activity: event.activity));
+    final result = await getRoutines(Params(activity: event.activity));
     yield result.fold(
       (failure) => Error(message: _mapFailureToMessage(failure)),
       (templates) => Loaded(templates),

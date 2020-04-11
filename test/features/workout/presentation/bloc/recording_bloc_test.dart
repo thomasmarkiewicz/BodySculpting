@@ -147,7 +147,7 @@ void main() {
       build: () async {
         return bloc;
       },
-      act: (bloc) => bloc.add(ChangeTemplate(template: testWorkout)),
+      act: (bloc) => bloc.add(ChangeRoutine(routine: testWorkout)),
       verify: (RecordingBloc bloc) {
         expect(bloc.state, Ready(testWorkout));
         return;
@@ -166,7 +166,7 @@ void main() {
         return bloc;
       },
       act: (RecordingBloc bloc) async {
-        bloc.add(ChangeTemplate(template: testWorkout));
+        bloc.add(ChangeRoutine(routine: testWorkout));
         bloc.add(RecordReps(
           supersetIndex: 0,
           exerciseSetIndex: 0,

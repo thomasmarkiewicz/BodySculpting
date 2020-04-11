@@ -1,24 +1,23 @@
 import 'package:bodysculpting/features/workout/domain/entities/workout_summary.dart';
 import 'package:bodysculpting/features/workout/presentation/pages/recording/recording_page.dart';
-import 'package:bodysculpting/features/workout/presentation/pages/templates/templates_page.dart';
-import 'package:bodysculpting/features/workout/presentation/pages/workout/widgets/add_workout_fab.dart';
-import 'package:bodysculpting/features/workout/presentation/pages/workout/widgets/workout_summary_tile.dart';
-import 'package:bodysculpting/features/workout/presentation/pages/workout/workout_bloc.dart';
-import 'package:bodysculpting/features/workout/presentation/pages/workout/workout_event.dart';
-import 'package:bodysculpting/features/workout/presentation/pages/workout/workout_state.dart';
+import 'package:bodysculpting/features/workout/presentation/pages/routines/routines_page.dart';
+import 'package:bodysculpting/features/workout/presentation/pages/workouts/widgets/add_workout_fab.dart';
+import 'package:bodysculpting/features/workout/presentation/pages/workouts/widgets/workout_summary_tile.dart';
+import 'package:bodysculpting/features/workout/presentation/pages/workouts/workouts_bloc.dart';
+import 'package:bodysculpting/features/workout/presentation/pages/workouts/workouts_event.dart';
+import 'package:bodysculpting/features/workout/presentation/pages/workouts/workouts_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../injection_container.dart';
 
-class WorkoutPage extends StatelessWidget {
-  const WorkoutPage({Key key}) : super(key: key);
+class WorkoutsPage extends StatelessWidget {
+  const WorkoutsPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) {
-        final bloc = sl<WorkoutBloc>();
+        final bloc = sl<WorkoutsBloc>();
         bloc.add(Refresh());
         return bloc;
       },
@@ -35,16 +34,16 @@ class WorkoutPage extends StatelessWidget {
   }
 
   Widget _buildBody() {
-    return BlocListener<WorkoutBloc, WorkoutState>(
+    return BlocListener<WorkoutsBloc, WorkoutsState>(
       listener: (context, state) {
         if (state is Final) {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => RecordingPage(template: state.workout),
+              builder: (context) => RecordingPage(routine: state.workout),
             ),
           ).then((_) {
-            BlocProvider.of<WorkoutBloc>(context).add(
+            BlocProvider.of<WorkoutsBloc>(context).add(
               Refresh(),
             );
           });
@@ -52,16 +51,16 @@ class WorkoutPage extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => TemplatesPage(activity: state.activity),
+              builder: (context) => RoutinesPage(activity: state.activity),
             ),
           ).then((_) {
-            BlocProvider.of<WorkoutBloc>(context).add(
+            BlocProvider.of<WorkoutsBloc>(context).add(
               Refresh(),
             );
           });
         }
       },
-      child: BlocBuilder<WorkoutBloc, WorkoutState>(
+      child: BlocBuilder<WorkoutsBloc, WorkoutsState>(
         builder: (context, state) {
           if (state is Initial) {
             return _buildWorkoutSummaryList(
@@ -102,7 +101,7 @@ class WorkoutPage extends StatelessWidget {
               return WorkoutSummaryTile(
                 workoutSummary: summaries[index],
                 onTap: () {
-                  BlocProvider.of<WorkoutBloc>(context).add(
+                  BlocProvider.of<WorkoutsBloc>(context).add(
                     WorkoutSelected(summaries[index]),
                   );
                 },

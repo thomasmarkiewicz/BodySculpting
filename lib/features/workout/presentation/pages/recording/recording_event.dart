@@ -4,13 +4,13 @@ abstract class RecordingEvent extends Equatable {
   const RecordingEvent();
 }
 
-class ChangeTemplate extends RecordingEvent {
-  final Workout template;
+class ChangeRoutine extends RecordingEvent {
+  final Workout routine;
 
   @override
-  List<Object> get props => [template];
+  List<Object> get props => [routine];
 
-  ChangeTemplate({@required this.template});
+  ChangeRoutine({@required this.routine});
 }
 
 class RecordReps extends RecordingEvent {

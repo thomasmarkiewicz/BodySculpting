@@ -1,16 +1,16 @@
 import 'package:bodysculpting/features/workout/domain/entities/workout_summary.dart';
 import 'package:equatable/equatable.dart';
 
-abstract class WorkoutEvent extends Equatable {
-  const WorkoutEvent();
+abstract class WorkoutsEvent extends Equatable {
+  const WorkoutsEvent();
 }
 
-class Refresh extends WorkoutEvent {
+class Refresh extends WorkoutsEvent {
   @override
   List<Object> get props => null;
 }
 
-class WorkoutSelected extends WorkoutEvent {
+class WorkoutSelected extends WorkoutsEvent {
   final WorkoutSummary workoutSummary;
 
   WorkoutSelected(this.workoutSummary);
@@ -19,7 +19,7 @@ class WorkoutSelected extends WorkoutEvent {
   List<Object> get props => [workoutSummary];
 }
 
-class ActivitySelected extends WorkoutEvent {
+class ActivitySelected extends WorkoutsEvent {
   final Activity activity;
 
   ActivitySelected(this.activity);

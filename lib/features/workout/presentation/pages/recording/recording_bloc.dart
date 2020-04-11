@@ -44,7 +44,7 @@ class RecordingBloc extends Bloc<RecordingEvent, RecordingState> {
   Stream<RecordingState> mapEventToState(
     RecordingEvent event,
   ) async* {
-    if (event is ChangeTemplate) {
+    if (event is ChangeRoutine) {
       yield* _changeTemplate(event);
     } else if (event is RecordReps) {
       yield* _recordReps(event);
@@ -57,11 +57,11 @@ class RecordingBloc extends Bloc<RecordingEvent, RecordingState> {
     }
   }
 
-  Stream<RecordingState> _changeTemplate(ChangeTemplate event) async* {
+  Stream<RecordingState> _changeTemplate(ChangeRoutine event) async* {
     // template can only be changed if the workout is not started
 
     if (this.state is Initial || this.state is Ready) {
-      final workout = event.template;
+      final workout = event.routine;
       // TODO
       // - retrieve previous workout and pre-populate target weights
       if (workout.isActive()) {

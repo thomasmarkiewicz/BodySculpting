@@ -1,37 +1,37 @@
 import 'package:bodysculpting/features/workout/domain/entities/workout.dart';
 import 'package:bodysculpting/features/workout/domain/entities/workout_summary.dart';
 import 'package:bodysculpting/features/workout/presentation/pages/recording/recording_page.dart';
-import 'package:bodysculpting/features/workout/presentation/pages/templates/templates_bloc.dart';
+import 'package:bodysculpting/features/workout/presentation/pages/routines/routines_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bodysculpting/injection_container.dart';
 
-class TemplatesPage extends StatelessWidget {
+class RoutinesPage extends StatelessWidget {
   final Activity activity;
-  const TemplatesPage({Key key, this.activity}) : super(key: key);
+  const RoutinesPage({Key key, this.activity}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) {
-        final bloc = sl<TemplatesBloc>();
-        bloc.add(GetTemplates(activity));
+        final bloc = sl<RoutinesBloc>();
+        bloc.add(FetchRoutines(activity));
         return bloc;
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Select a workout'),
+          title: Text('Select a routine'),
         ),
-        body: _buildTemplatesList(),
+        body: _buildRoutineList(),
       ),
     );
   }
 
-  Widget _buildTemplatesList() {
-    return BlocBuilder<TemplatesBloc, TemplatesState>(
+  Widget _buildRoutineList() {
+    return BlocBuilder<RoutinesBloc, RoutinesState>(
       builder: (context, state) {
         if (state is Loaded) {
-          return TemplatesList(templates: state.workoutTemplates);
+          return RoutineList(routines: state.workoutTemplates);
         } else {
           return Column();
         }
@@ -40,23 +40,23 @@ class TemplatesPage extends StatelessWidget {
   }
 }
 
-class TemplatesList extends StatelessWidget {
-  final List<Workout> templates;
-  TemplatesList({Key key, this.templates}) : super(key: key);
+class RoutineList extends StatelessWidget {
+  final List<Workout> routines;
+  RoutineList({Key key, this.routines}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
         child: ListView.builder(
-      itemCount: templates.length,
+      itemCount: routines.length,
       itemBuilder: (BuildContext context, int index) {
         return ListTile(
-          title: Text(templates[index].name),
+          title: Text(routines[index].name),
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => RecordingPage(template: templates[index]),
+                builder: (context) => RecordingPage(routine: routines[index]),
               ),
             ).then((_) {
               Navigator.pop(context);

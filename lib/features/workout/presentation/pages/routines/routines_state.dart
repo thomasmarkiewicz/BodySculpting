@@ -1,20 +1,20 @@
-part of 'templates_bloc.dart';
+part of 'routines_bloc.dart';
 
-abstract class TemplatesState extends Equatable {
-  const TemplatesState();
+abstract class RoutinesState extends Equatable {
+  const RoutinesState();
 }
 
-class Empty extends TemplatesState {
+class Empty extends RoutinesState {
   @override
   List<Object> get props => [];
 }
 
-class Loading extends TemplatesState {
+class Loading extends RoutinesState {
   @override
   List<Object> get props => [];
 }
 
-class Loaded extends TemplatesState {
+class Loaded extends RoutinesState {
   final List<Workout> workoutTemplates;
 
   @override
@@ -23,7 +23,7 @@ class Loaded extends TemplatesState {
   Loaded(this.workoutTemplates);
 }
 
-class Error extends TemplatesState {
+class Error extends RoutinesState {
   final String message;
 
   @override

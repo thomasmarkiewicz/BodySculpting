@@ -6,20 +6,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bodysculpting/injection_container.dart';
 
 class RecordingPage extends StatelessWidget {
-  final Workout template;
-  const RecordingPage({Key key, this.template}) : super(key: key);
+  final Workout routine;
+  const RecordingPage({Key key, this.routine}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) {
         final bloc = sl<RecordingBloc>();
-        bloc.add(ChangeTemplate(template: template));
+        bloc.add(ChangeRoutine(routine: routine));
         return bloc;
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text('${template.name}'),
+          title: Text('${routine.name}'),
         ),
         body: _buildBody(),
       ),

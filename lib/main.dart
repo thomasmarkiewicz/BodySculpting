@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'features/workout/presentation/pages/workout/workout_page.dart';
+import 'features/workout/presentation/pages/workouts/workouts_page.dart';
 import 'injection_container.dart' as di;
 
 void main() async {
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       darkTheme: darkTheme,
       //themeMode: ThemeMode.dark,
-      home: WorkoutPage(),
+      home: WorkoutsPage(),
     );
   }
 }
