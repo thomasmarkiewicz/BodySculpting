@@ -16,7 +16,8 @@ class WorkoutRepository implements AbstractWorkoutRepository {
   @override
   Future<Either<Failure, Workout>> createWorkout(Workout workout) async {
     try {
-      final Workout result = await localDataSource.createWorkout(workout);
+      final workoutModel = WorkoutModel.from(workout);
+      final Workout result = await localDataSource.createWorkout(workoutModel);
       return Right(result);
     } on CacheException {
       return Left(CacheFailure());

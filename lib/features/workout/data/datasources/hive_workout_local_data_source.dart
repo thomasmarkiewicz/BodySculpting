@@ -43,8 +43,8 @@ class HiveWorkoutLocalDataSource implements AbstractWorkoutLocalDataSource {
     }
 
     final encoder = JsonEncoder.withIndent("   ");
-    activeBox.put('workout', encoder.convert(workout));
-    activeBox.close();
+    await activeBox.put('workout', encoder.convert(workout));
+    await activeBox.close();
     return workout;
   }
 
@@ -65,8 +65,12 @@ class HiveWorkoutLocalDataSource implements AbstractWorkoutLocalDataSource {
     await workoutLazyBox.delete(dateTimeKey);
     await workoutLazyBox.close();
 
-    final workout = WorkoutModel.fromJson(jsonDecode(jsonWorkout));
-    return workout;
+    if (jsonWorkout != null) {
+      final workout = WorkoutModel.fromJson(jsonDecode(jsonWorkout));
+      return workout;
+    }
+
+    throw CacheException();
   }
 
   @override
@@ -89,9 +93,11 @@ class HiveWorkoutLocalDataSource implements AbstractWorkoutLocalDataSource {
         await Hive.openLazyBox<String>('workout_${yearPart}_$activityPart');
 
     final jsonWorkout = await workoutLazyBox.get(dateTimeKey);
-    final workout = WorkoutModel.fromJson(jsonDecode(jsonWorkout));
-    if (workout.start == some(start) && workout.activity == activity) {
-      return workout;
+    if (jsonWorkout != null) {
+      final workout = WorkoutModel.fromJson(jsonDecode(jsonWorkout));
+      if (workout.start == some(start) && workout.activity == activity) {
+        return workout;
+      }
     }
 
     // didn't find one
@@ -155,6 +161,9 @@ class HiveWorkoutLocalDataSource implements AbstractWorkoutLocalDataSource {
   Future<WorkoutModel> updateWorkout(WorkoutModel workout) async {
     final encoder = JsonEncoder.withIndent("   ");
 
+    // TODO: at some point I need to delete from the 'active' box
+    //       when updating an active workout to finished???
+
     // check in active
     final activeBox = await Hive.openBox<String>('active');
     final jsonActiveWorkout = activeBox.get('workout');
@@ -178,12 +187,14 @@ class HiveWorkoutLocalDataSource implements AbstractWorkoutLocalDataSource {
         await Hive.openLazyBox<String>('workout_${yearPart}_$activityPart');
 
     final jsonWorkout = await workoutLazyBox.get(dateTimeKey);
-    final existingWorkout = WorkoutModel.fromJson(jsonDecode(jsonWorkout));
-    if (existingWorkout.start == workout.start &&
-        existingWorkout.activity == workout.activity) {
-      await workoutLazyBox.put(dateTimeKey, encoder.convert(workout));
-      await workoutLazyBox.close();
-      return workout;
+    if (jsonWorkout != null) {
+      final existingWorkout = WorkoutModel.fromJson(jsonDecode(jsonWorkout));
+      if (existingWorkout.start == workout.start &&
+          existingWorkout.activity == workout.activity) {
+        await workoutLazyBox.put(dateTimeKey, encoder.convert(workout));
+        await workoutLazyBox.close();
+        return workout;
+      }
     }
 
     // didn't find one
