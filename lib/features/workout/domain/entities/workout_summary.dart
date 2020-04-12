@@ -7,6 +7,7 @@ enum Activity { swim, bike, run, lift, other }
 
 class WorkoutSummary extends Equatable {
   final String routineId;
+  final String program;
   final String name;
   final Activity activity;
   final Units units;
@@ -18,6 +19,7 @@ class WorkoutSummary extends Equatable {
   @override
   List<Object> get props => [
         routineId,
+        program,
         name,
         activity,
         units,
@@ -29,6 +31,7 @@ class WorkoutSummary extends Equatable {
 
   WorkoutSummary({
     @required this.routineId,
+    @required this.program,
     @required this.name,
     @required this.activity,
     @required this.units,

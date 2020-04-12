@@ -22,6 +22,7 @@ void main() {
 
   final tWorkoutBefore = Workout(
     routineId: "1",
+    program: "Barbbell Lifts",
     start: some(DateTime.now()),
     end: none(),
     summary: none(),
@@ -42,6 +43,7 @@ void main() {
 
   final tWorkoutAfter = Workout(
     routineId: tWorkoutBefore.routineId,
+    program: tWorkoutBefore.program,
     activity: tWorkoutBefore.activity,
     start: tWorkoutBefore.start,
     end: tWorkoutBefore.end,

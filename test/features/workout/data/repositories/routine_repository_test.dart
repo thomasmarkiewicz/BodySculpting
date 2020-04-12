@@ -27,6 +27,7 @@ void main() {
     final testWorkoutTemplateList = [
       WorkoutModel(
         routineId: "1",
+        program: "Barbbell Lifts",
         activity: Activity.lift,
         name: 'Barbbell Lifts 3x10 A',
         description: some('Squat, Bench, Press'),

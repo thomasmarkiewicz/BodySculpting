@@ -13,6 +13,7 @@ import '../../../../fixtures/fixture_reader.dart';
 void main() {
   final testWorkout = WorkoutModel(
     routineId: "1",
+    program: "Barbbell Lifts",
     activity: Activity.lift,
     name: 'Barbbell Lifts 3x10 A',
     description: some('Squat, Bench, Press'),
@@ -112,6 +113,7 @@ void main() {
       final result = testWorkout.toJson();
       final expectedMap = {
         "routine_id": "1",
+        "program": "Barbbell Lifts",
         "activity": "lift",
         "name": "Barbbell Lifts 3x10 A",
         "description": "Squat, Bench, Press",

@@ -4,6 +4,8 @@ import 'stock_routines.dart' as stockRoutines;
 import 'stock_exercises.dart' as stockExercises;
 
 class HiveLocalDataSource {
+  // TODO: bump this version when anything in stock_* data files changed from previous release
+  //       and add migration to update models
   static const int LATEST_HIVE_VERSION = 1;
 
   static Future<void> init() async {

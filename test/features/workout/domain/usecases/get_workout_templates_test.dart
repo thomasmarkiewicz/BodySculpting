@@ -23,6 +23,7 @@ void main() {
   final tWorkoutTemplates = [
     Workout(
       routineId: "1",
+      program: "Barbbell Lifts",
       name: 'Barbbell Lifts 3x10 A',
       activity: Activity.lift,
       description: some('Squat, bench, deadlift'),

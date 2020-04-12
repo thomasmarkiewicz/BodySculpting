@@ -7,6 +7,7 @@ import 'package:meta/meta.dart';
 class WorkoutSummaryModel extends WorkoutSummary {
   WorkoutSummaryModel({
     @required String routineId,
+    @required String program,
     @required String name,
     @required Activity activity,
     @required UnitsModel units,
@@ -16,6 +17,7 @@ class WorkoutSummaryModel extends WorkoutSummary {
     Option<String> summary,
   }) : super(
           routineId: routineId,
+          program: program,
           name: name,
           activity: activity,
           units: units,
@@ -28,6 +30,7 @@ class WorkoutSummaryModel extends WorkoutSummary {
   factory WorkoutSummaryModel.from(WorkoutSummary workoutSummary) {
     return WorkoutSummaryModel(
       routineId: workoutSummary.routineId,
+      program: workoutSummary.program,
       name: workoutSummary.name,
       activity: workoutSummary.activity,
       units: UnitsModel.from(workoutSummary.units),
@@ -41,6 +44,7 @@ class WorkoutSummaryModel extends WorkoutSummary {
   factory WorkoutSummaryModel.fromJson(Map<String, dynamic> json) {
     return WorkoutSummaryModel(
       routineId: json['routine_id'],
+      program: json['program'],
       name: json['name'],
       activity: Activity.values
           .firstWhere((e) => e.toString() == 'Activity.' + json['activity']),
@@ -58,6 +62,7 @@ class WorkoutSummaryModel extends WorkoutSummary {
   Map<String, dynamic> toJson() {
     final map = {
       'routine_id': routineId,
+      'program': program,
       'name': name,
       'activity': describeEnum(activity),
       'units': (units as UnitsModel).toString(),

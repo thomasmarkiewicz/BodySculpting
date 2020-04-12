@@ -14,6 +14,7 @@ class Workout extends WorkoutSummary {
 
   Workout({
     @required String routineId,
+    @required String program,
     @required String name,
     @required Activity activity,
     @required Units units,
@@ -24,6 +25,7 @@ class Workout extends WorkoutSummary {
     @required this.supersets,
   }) : super(
           routineId: routineId,
+          program: program,
           name: name,
           activity: activity,
           units: units,
@@ -36,6 +38,7 @@ class Workout extends WorkoutSummary {
   Workout started() {
     return Workout(
       routineId: this.routineId,
+      program: this.program,
       name: this.name,
       activity: this.activity,
       units: this.units,
@@ -50,6 +53,7 @@ class Workout extends WorkoutSummary {
   Workout finished() {
     return Workout(
       routineId: this.routineId,
+      program: this.program,
       name: this.name,
       activity: this.activity,
       units: this.units,
@@ -86,6 +90,7 @@ class Workout extends WorkoutSummary {
 
     return Workout(
       routineId: this.routineId,
+      program: this.program,
       name: this.name,
       activity: this.activity,
       units: this.units,
@@ -125,6 +130,7 @@ class Workout extends WorkoutSummary {
 
     return Workout(
       routineId: this.routineId,
+      program: this.program,
       name: this.name,
       activity: this.activity,
       units: this.units,

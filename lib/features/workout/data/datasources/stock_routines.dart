@@ -8,6 +8,7 @@ import 'package:dartz/dartz.dart';
 final routines = [
   WorkoutModel(
     routineId: "ca265cd00526",
+    program: "5x5 Barbbell Lifts",
     activity: Activity.lift,
     name: "5x5 Barbbell Lifts A",
     description: some("Squat, Bench, Deadlift"),
@@ -56,6 +57,7 @@ final routines = [
   ),
   WorkoutModel(
     routineId: "8af1feb9836e",
+    program: "5x5 Barbbell Lifts",
     activity: Activity.lift,
     name: "5x5 Barbbell Lifts B",
     description: some("Squat, Shoulder Press, Rows"),
@@ -110,6 +112,7 @@ final routines = [
   ),
   WorkoutModel(
     routineId: "6010b44796e6",
+    program: "3x10 Barbbell Lifts",
     activity: Activity.lift,
     name: "3x10 Barbbell Lifts A",
     description: some("Squat, Bench, Deadlift"),
@@ -154,6 +157,7 @@ final routines = [
   ),
   WorkoutModel(
     routineId: "5f536c2ddbf4",
+    program: "3x10 Barbbell Lifts",
     activity: Activity.lift,
     name: "3x10 Barbbell Lifts B",
     description: some("Squat, Shoulder Press, Rows"),
@@ -202,6 +206,7 @@ final routines = [
   ),
   WorkoutModel(
     routineId: "e6596d74fb9a",
+    program: "Dumbbell Supersets",
     activity: Activity.lift,
     name: "Dumbbell Supersets Break-In A",
     description: some("Dumbbell supersets starting routine"),
@@ -294,6 +299,7 @@ final routines = [
   ),
   WorkoutModel(
     routineId: "5652c00c5895",
+    program: "Dumbbell Supersets",
     activity: Activity.lift,
     name: "Dumbbell Supersets A",
     description: some("Day 1"),

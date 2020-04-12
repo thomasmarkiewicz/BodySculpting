@@ -31,6 +31,7 @@ void main() {
     final testTemplates = [
       Workout(
         routineId: "1",
+        program: "Barbbell Lifts",
         activity: Activity.lift,
         name: "Barbbell Lifts 5x5 A",
         description: some("Squat, Bench, Deadlift"),
@@ -49,6 +50,7 @@ void main() {
       ),
       Workout(
         routineId: "2",
+        program: "Barbbell Lifts",
         activity: Activity.lift,
         name: "Barbbell Lifts 5x5 B",
         description: some("Squat, Shoulder Press, Rows"),
