@@ -136,8 +136,11 @@ class RecordingBloc extends Bloc<RecordingEvent, RecordingState> {
         (workout) => Active(workout),
       );
       if (result.isRight()) {
-        yield Updating(state.workout);
-        yield await _updateTargetWeight(state.workout, event);
+        yield Updating(result.getOrElse(() => state.workout));
+        yield await _updateTargetWeight(
+          result.getOrElse(() => state.workout),
+          event,
+        );
       }
     } else if (state is Active) {
       yield Updating(state.workout);

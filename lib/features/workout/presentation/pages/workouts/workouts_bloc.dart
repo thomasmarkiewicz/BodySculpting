@@ -42,8 +42,12 @@ class WorkoutsBloc extends Bloc<WorkoutsEvent, WorkoutsState> {
     );
     yield result.fold(
       (failure) => state, // TODO: indicate failure somehow
-      (summaries) => Ready(
-          summaries), // TODO: NEXT - gets here but workout_page doesn't see this state change, why???
+      (summaries) {
+        summaries.sort((a, b) => b.start
+            .getOrElse(() => null)
+            .compareTo(a.start.getOrElse(() => null)));
+        return Ready(summaries);
+      },
     );
   }
 
