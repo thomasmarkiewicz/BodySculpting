@@ -5,6 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:bodysculpting/features/workout/domain/entities/workout.dart';
 import 'package:bodysculpting/features/workout/data/models/workout_summary_model.dart';
 import 'package:bodysculpting/features/workout/data/models/workout_model.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'abstract_workout_local_data_source.dart';
@@ -25,8 +26,6 @@ so the name of the box is build from the workout info:
 */
 
 class HiveWorkoutLocalDataSource implements AbstractWorkoutLocalDataSource {
-  get activity => null;
-
   @override
   Future<WorkoutModel> createWorkout(WorkoutModel workout) async {
     // only an active workout can be created
@@ -56,7 +55,7 @@ class HiveWorkoutLocalDataSource implements AbstractWorkoutLocalDataSource {
   }) async {
     final dateTimeKey = DateFormat('yyyyMMdd-kkmmss').format(start);
     final yearPart = DateFormat('yyyy').format(start);
-    final activityPart = activity.toString();
+    final activityPart = describeEnum(activity);
 
     final workoutLazyBox =
         await Hive.openLazyBox<String>('workout_${yearPart}_$activityPart');
@@ -88,7 +87,7 @@ class HiveWorkoutLocalDataSource implements AbstractWorkoutLocalDataSource {
     // check in other box
     final dateTimeKey = DateFormat('yyyyMMdd-kkmmss').format(start);
     final yearPart = DateFormat('yyyy').format(start);
-    final activityPart = activity.toString();
+    final activityPart = describeEnum(activity);
     final workoutLazyBox =
         await Hive.openLazyBox<String>('workout_${yearPart}_$activityPart');
 
@@ -131,7 +130,7 @@ class HiveWorkoutLocalDataSource implements AbstractWorkoutLocalDataSource {
 
     for (final year in years) {
       for (final activity in activities) {
-        final activityPart = activity.toString();
+        final activityPart = activity;
         final workoutLazyBox =
             await Hive.openLazyBox<String>('workout_${year}_$activityPart');
         for (final key in workoutLazyBox.keys) {
@@ -159,6 +158,11 @@ class HiveWorkoutLocalDataSource implements AbstractWorkoutLocalDataSource {
 
   @override
   Future<WorkoutModel> updateWorkout(WorkoutModel workout) async {
+    final startDateTime = workout.start.getOrElse(() => throw CacheException());
+    final dateTimeKey = DateFormat('yyyyMMdd-kkmmss').format(startDateTime);
+    final yearPart = DateFormat('yyyy').format(startDateTime);
+    final activityPart = describeEnum(workout.activity);
+    final finishedWorkoutBoxName = 'workout_${yearPart}_$activityPart';
     final encoder = JsonEncoder.withIndent("   ");
 
     // TODO: at some point I need to delete from the 'active' box
@@ -172,19 +176,25 @@ class HiveWorkoutLocalDataSource implements AbstractWorkoutLocalDataSource {
           WorkoutModel.fromJson(jsonDecode(jsonActiveWorkout));
       if (existingWorkout.start == workout.start &&
           existingWorkout.activity == workout.activity) {
-        await activeBox.put('workout', encoder.convert(workout));
-        await activeBox.close();
-        return workout;
+        if (workout.isActive()) {
+          await activeBox.put('workout', encoder.convert(workout));
+          await activeBox.close();
+          return workout;
+        } else {
+          final workoutLazyBox =
+              await Hive.openLazyBox<String>(finishedWorkoutBoxName);
+          await workoutLazyBox.put(dateTimeKey, encoder.convert(workout));
+          await activeBox.delete('workout');
+          await workoutLazyBox.close();
+          await activeBox.close();
+          return workout;
+        }
       }
     }
 
     // check in other box
-    final startDateTime = workout.start.getOrElse(() => throw CacheException());
-    final dateTimeKey = DateFormat('yyyyMMdd-kkmmss').format(startDateTime);
-    final yearPart = DateFormat('yyyy').format(startDateTime);
-    final activityPart = activity.toString();
     final workoutLazyBox =
-        await Hive.openLazyBox<String>('workout_${yearPart}_$activityPart');
+        await Hive.openLazyBox<String>(finishedWorkoutBoxName);
 
     final jsonWorkout = await workoutLazyBox.get(dateTimeKey);
     if (jsonWorkout != null) {
