@@ -10,16 +10,18 @@ import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'abstract_workout_local_data_source.dart';
 
-// I need a strategy for the boxes
 /*
 
-active workout is store in "active" box with key "workout"
+STRATEGY FOR BOX NAMING
 
-workouts are stored in various boxes based on year and activity
-year so that their size is capped 
-activity because those will likely end up as different models
+- an active workout is aways stored in the "active" box under the "workout" key
 
-so the name of the box is build from the workout info:
+- workouts are stored in various boxes based on year and activity
+
+the `year` is there so that opening a 10 year old box will not be a huge memory cost
+the `activity` is there because different activities will likely use different models
+
+for example:
 
 `workout_${year}_${activity}`
 
@@ -77,6 +79,7 @@ class HiveWorkoutLocalDataSource implements AbstractWorkoutLocalDataSource {
     // check in active
     final activeBox = await Hive.openBox<String>('active');
     final jsonActiveWorkout = activeBox.get('workout');
+    activeBox.close();
     if (jsonActiveWorkout != null) {
       final workout = WorkoutModel.fromJson(jsonDecode(jsonActiveWorkout));
       if (workout.start == some(start) && workout.activity == activity) {
@@ -90,8 +93,9 @@ class HiveWorkoutLocalDataSource implements AbstractWorkoutLocalDataSource {
     final activityPart = describeEnum(activity);
     final workoutLazyBox =
         await Hive.openLazyBox<String>('workout_${yearPart}_$activityPart');
-
     final jsonWorkout = await workoutLazyBox.get(dateTimeKey);
+
+    workoutLazyBox.close();
     if (jsonWorkout != null) {
       final workout = WorkoutModel.fromJson(jsonDecode(jsonWorkout));
       if (workout.start == some(start) && workout.activity == activity) {
@@ -113,6 +117,8 @@ class HiveWorkoutLocalDataSource implements AbstractWorkoutLocalDataSource {
     // active
     final activeBox = await Hive.openBox<String>('active');
     final jsonActiveWorkout = activeBox.get('workout');
+    activeBox.close();
+
     if (jsonActiveWorkout != null) {
       final summary =
           WorkoutSummaryModel.fromJson(jsonDecode(jsonActiveWorkout));
@@ -150,6 +156,7 @@ class HiveWorkoutLocalDataSource implements AbstractWorkoutLocalDataSource {
             }
           }
         }
+        workoutLazyBox.close();
       }
     }
 
@@ -164,9 +171,6 @@ class HiveWorkoutLocalDataSource implements AbstractWorkoutLocalDataSource {
     final activityPart = describeEnum(workout.activity);
     final finishedWorkoutBoxName = 'workout_${yearPart}_$activityPart';
     final encoder = JsonEncoder.withIndent("   ");
-
-    // TODO: at some point I need to delete from the 'active' box
-    //       when updating an active workout to finished???
 
     // check in active
     final activeBox = await Hive.openBox<String>('active');
@@ -191,6 +195,7 @@ class HiveWorkoutLocalDataSource implements AbstractWorkoutLocalDataSource {
         }
       }
     }
+    activeBox.close();
 
     // check in other box
     final workoutLazyBox =
@@ -208,6 +213,7 @@ class HiveWorkoutLocalDataSource implements AbstractWorkoutLocalDataSource {
     }
 
     // didn't find one
+    workoutLazyBox.close();
     throw CacheException();
   }
 }
