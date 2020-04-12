@@ -21,4 +21,10 @@ abstract class AbstractWorkoutRepository {
     @required DateTime end,
     @required Activity activity,
   });
+  Future<Either<Failure, List<Workout>>> getWorkoutsForActivityProgram({
+    @required DateTime start,
+    @required DateTime end,
+    @required Activity activity,
+    @required String program,
+  });
 }

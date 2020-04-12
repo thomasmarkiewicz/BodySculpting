@@ -86,4 +86,25 @@ class WorkoutRepository implements AbstractWorkoutRepository {
       return Left(CacheFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, List<Workout>>> getWorkoutsForActivityProgram({
+    DateTime start,
+    DateTime end,
+    Activity activity,
+    String program,
+  }) async {
+    try {
+      final List<Workout> result =
+          await localDataSource.getWorkoutsForActivityProgram(
+        start: start,
+        end: end,
+        activity: activity,
+        program: program,
+      );
+      return Right(result);
+    } on CacheException {
+      return Left(CacheFailure());
+    }
+  }
 }

@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - hive: web-compatible local storage
 - web app now works
+- setting new workout's target weights based on the previous workouts in the same program (from up to 90 days ago)
 
 ### Changed
 

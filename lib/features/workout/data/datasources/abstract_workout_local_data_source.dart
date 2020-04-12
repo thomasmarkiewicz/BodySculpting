@@ -20,4 +20,10 @@ abstract class AbstractWorkoutLocalDataSource {
     @required DateTime end,
     @required Activity activity,
   });
+  Future<List<WorkoutModel>> getWorkoutsForActivityProgram({
+    @required DateTime start,
+    @required DateTime end,
+    @required Activity activity,
+    @required String program,
+  });
 }

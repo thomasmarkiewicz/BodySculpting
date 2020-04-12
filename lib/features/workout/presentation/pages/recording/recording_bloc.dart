@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:bodysculpting/features/workout/domain/entities/workout.dart';
+import 'package:bodysculpting/features/workout/domain/usecases/adjust_routine_targets.dart';
 import 'package:bodysculpting/features/workout/domain/usecases/create_workout.dart';
 import 'package:bodysculpting/features/workout/domain/usecases/delete_workout.dart';
 import 'package:bodysculpting/features/workout/domain/usecases/finish_workout.dart';
@@ -19,6 +20,7 @@ class RecordingBloc extends Bloc<RecordingEvent, RecordingState> {
   final FinishWorkout finishWorkout;
   final UpdateTargetWeight updateTargetWeight;
   final DeleteWorkout deleteWorkout;
+  final AdjustRoutineTargets adjustRoutineTargets;
 
   RecordingBloc({
     @required CreateWorkout createWorkout,
@@ -26,16 +28,19 @@ class RecordingBloc extends Bloc<RecordingEvent, RecordingState> {
     @required FinishWorkout finishWorkout,
     @required UpdateTargetWeight updateTargetWeight,
     @required DeleteWorkout deleteWorkout,
+    @required AdjustRoutineTargets adjustRoutineTargets,
   })  : assert(createWorkout != null),
         assert(updateWorkoutReps != null),
         assert(finishWorkout != null),
         assert(updateTargetWeight != null),
         assert(deleteWorkout != null),
+        assert(adjustRoutineTargets != null),
         this.createWorkout = createWorkout,
         this.updateWorkoutReps = updateWorkoutReps,
         this.finishWorkout = finishWorkout,
         this.updateTargetWeight = updateTargetWeight,
-        this.deleteWorkout = deleteWorkout;
+        this.deleteWorkout = deleteWorkout,
+        this.adjustRoutineTargets = adjustRoutineTargets;
 
   @override
   RecordingState get initialState => Initial();
@@ -61,9 +66,14 @@ class RecordingBloc extends Bloc<RecordingEvent, RecordingState> {
     // template can only be changed if the workout is not started
 
     if (this.state is Initial || this.state is Ready) {
-      final workout = event.routine;
-      // TODO
-      // - retrieve previous workout and pre-populate target weights
+      final result = await adjustRoutineTargets(
+          AdjustRoutineTargetsParams(workout: event.routine));
+
+      final workout = result.fold(
+        (l) => event.routine,
+        (workout) => workout,
+      );
+
       if (workout.isActive()) {
         yield Active(workout);
       } else if (workout.isFinished()) {

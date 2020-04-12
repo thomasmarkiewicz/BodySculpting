@@ -1,3 +1,4 @@
+import 'package:bodysculpting/features/workout/domain/usecases/adjust_routine_targets.dart';
 import 'package:bodysculpting/features/workout/domain/usecases/finish_workout.dart';
 import 'package:bodysculpting/features/workout/domain/usecases/get_workout_summaries.dart';
 import 'package:get_it/get_it.dart';
@@ -52,6 +53,7 @@ Future<void> blocs() async {
         finishWorkout: sl(),
         updateTargetWeight: sl(),
         deleteWorkout: sl(),
+        adjustRoutineTargets: sl(),
       ));
 }
 
@@ -65,6 +67,7 @@ Future<void> usecases() async {
   sl.registerLazySingleton(() => GetWorkout(sl()));
   sl.registerLazySingleton(() => UpdateTargetWeight(sl()));
   sl.registerLazySingleton(() => DeleteWorkout(sl()));
+  sl.registerLazySingleton(() => AdjustRoutineTargets(sl()));
 }
 
 // Singletons

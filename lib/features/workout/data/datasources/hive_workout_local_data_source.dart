@@ -126,12 +126,7 @@ class HiveWorkoutLocalDataSource implements AbstractWorkoutLocalDataSource {
     }
 
     // rest in the date range
-    final count = end.year - start.year + 1;
-    final years = new List<int>.generate(
-      count,
-      (i) => start.year + i,
-    );
-
+    final years = _getYearsList(start, end);
     final activities = ['lift', 'swim', 'bike', 'run', 'other'];
 
     for (final year in years) {
@@ -215,5 +210,49 @@ class HiveWorkoutLocalDataSource implements AbstractWorkoutLocalDataSource {
     // didn't find one
     workoutLazyBox.close();
     throw CacheException();
+  }
+
+  @override
+  Future<List<WorkoutModel>> getWorkoutsForActivityProgram({
+    DateTime start,
+    DateTime end,
+    Activity activity,
+    String program,
+  }) async {
+    final workoutList = List<WorkoutModel>();
+
+    final years = _getYearsList(start, end);
+
+    for (final year in years) {
+      final activityPart = describeEnum(activity);
+      final workoutLazyBox =
+          await Hive.openLazyBox<String>('workout_${year}_$activityPart');
+      for (final key in workoutLazyBox.keys) {
+        final jsonWorkout = await workoutLazyBox.get(key);
+        if (jsonWorkout != null) {
+          final workout = WorkoutModel.fromJson(jsonDecode(jsonWorkout));
+          if (workout.start.isSome() &&
+              workout.end.isSome() &&
+              workout.start.getOrElse(() => DateTime.now()).compareTo(start) >=
+                  1 &&
+              workout.end.getOrElse(() => DateTime.now()).compareTo(end) <= 0 &&
+              workout.program.compareTo(program) == 0) {
+            workoutList.add(workout);
+          }
+        }
+      }
+      workoutLazyBox.close();
+    }
+
+    return workoutList;
+  }
+
+  List<int> _getYearsList(DateTime start, DateTime end) {
+    final count = end.year - start.year + 1;
+    final years = new List<int>.generate(
+      count,
+      (i) => start.year + i,
+    );
+    return years;
   }
 }

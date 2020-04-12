@@ -4,6 +4,7 @@ import 'package:bodysculpting/features/workout/domain/entities/exercise_set.dart
 import 'package:bodysculpting/features/workout/domain/entities/set.dart';
 import 'package:bodysculpting/features/workout/domain/entities/workout.dart';
 import 'package:bodysculpting/features/workout/domain/entities/workout_summary.dart';
+import 'package:bodysculpting/features/workout/domain/usecases/adjust_routine_targets.dart';
 import 'package:bodysculpting/features/workout/domain/usecases/create_workout.dart';
 import 'package:bodysculpting/features/workout/domain/usecases/delete_workout.dart';
 import 'package:bodysculpting/features/workout/domain/usecases/finish_workout.dart';
@@ -24,6 +25,8 @@ class MockUpdateTargetWeight extends Mock implements UpdateTargetWeight {}
 
 class MockDeleteWorkout extends Mock implements DeleteWorkout {}
 
+class MockAdjustRoutineTargets extends Mock implements AdjustRoutineTargets {}
+
 void main() {
   RecordingBloc bloc;
   MockCreateWorkout mockCreateWorkout;
@@ -31,6 +34,7 @@ void main() {
   MockFinishWorkout mockFinishWorkout;
   MockUpdateTargetWeight mockUpdateTargetWeight;
   MockDeleteWorkout mockDeleteWorkout;
+  MockAdjustRoutineTargets mockAdjustRoutineTargets;
 
   final testWorkout = Workout(
     routineId: "1",
@@ -129,6 +133,7 @@ void main() {
     mockFinishWorkout = MockFinishWorkout();
     mockUpdateTargetWeight = MockUpdateTargetWeight();
     mockDeleteWorkout = MockDeleteWorkout();
+    mockAdjustRoutineTargets = MockAdjustRoutineTargets();
 
     bloc = RecordingBloc(
       createWorkout: mockCreateWorkout,
@@ -136,6 +141,7 @@ void main() {
       finishWorkout: mockFinishWorkout,
       updateTargetWeight: mockUpdateTargetWeight,
       deleteWorkout: mockDeleteWorkout,
+      adjustRoutineTargets: mockAdjustRoutineTargets,
     );
   });
 
@@ -147,6 +153,8 @@ void main() {
     blocTest(
       'should prepare a new Workout and transition to Ready state',
       build: () async {
+        when(mockAdjustRoutineTargets(any))
+            .thenAnswer((_) async => Right(testWorkout));
         return bloc;
       },
       act: (bloc) => bloc.add(ChangeRoutine(routine: testWorkout)),
@@ -164,6 +172,8 @@ void main() {
         when(mockCreateWorkout(any))
             .thenAnswer((_) async => Right(testWorkout));
         when(mockUpdateWorkoutReps(any))
+            .thenAnswer((_) async => Right(testWorkout));
+        when(mockAdjustRoutineTargets(any))
             .thenAnswer((_) async => Right(testWorkout));
         return bloc;
       },
