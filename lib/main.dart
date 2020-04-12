@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'features/workout/presentation/pages/workouts/workouts_page.dart';
 import 'injection_container.dart' as di;
 
-void main() async {
+Future<void> main() async {
   await di.init();
   runApp(MyApp());
 }

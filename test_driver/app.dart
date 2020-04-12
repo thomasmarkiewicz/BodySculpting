@@ -3,7 +3,7 @@
 import 'package:flutter_driver/driver_extension.dart';
 import 'package:bodysculpting/main.dart' as app;
 
-void main() {
+void main() async {
   enableFlutterDriverExtension();
-  app.main();
+  await app.main();
 }
