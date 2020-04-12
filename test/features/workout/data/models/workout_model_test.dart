@@ -12,6 +12,7 @@ import '../../../../fixtures/fixture_reader.dart';
 
 void main() {
   final testWorkout = WorkoutModel(
+    routineId: "1",
     activity: Activity.lift,
     name: 'Barbbell Lifts 3x10 A',
     description: some('Squat, Bench, Press'),
@@ -110,6 +111,7 @@ void main() {
     test('returns a JSON map containing the proper data', () async {
       final result = testWorkout.toJson();
       final expectedMap = {
+        "routine_id": "1",
         "activity": "lift",
         "name": "Barbbell Lifts 3x10 A",
         "description": "Squat, Bench, Press",

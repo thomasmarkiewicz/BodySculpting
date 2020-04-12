@@ -27,26 +27,38 @@ class RecordingPage extends StatelessWidget {
   }
 
   Widget _buildBody() {
-    return BlocBuilder<RecordingBloc, RecordingState>(
-      builder: (context, state) {
-        if (state is Ready) {
-          return _buildSupersetsView(context: context, workout: state.workout);
-        } else if (state is Active) {
-          return _buildSupersetsView(context: context, workout: state.workout);
-        } else if (state is Updating) {
-          return _buildSupersetsView(context: context, workout: state.workout);
-        } else if (state is Finished) {
+    return BlocListener<RecordingBloc, RecordingState>(
+      listener: (context, state) {
+        if (state is Finished) {
           Navigator.pop(context);
-          return _buildSupersetsView(context: context, workout: state.workout);
-        } else if (state is Archived) {
-          return _buildSupersetsView(context: context, workout: state.workout);
         } else if (state is Deleted) {
           Navigator.pop(context);
-          return _buildSupersetsView(context: context, workout: state.workout);
-        } else {
-          return Column();
         }
       },
+      child: BlocBuilder<RecordingBloc, RecordingState>(
+        builder: (context, state) {
+          if (state is Ready) {
+            return _buildSupersetsView(
+                context: context, workout: state.workout);
+          } else if (state is Active) {
+            return _buildSupersetsView(
+                context: context, workout: state.workout);
+          } else if (state is Updating) {
+            return _buildSupersetsView(
+                context: context, workout: state.workout);
+          } else if (state is Finished) {
+            return _buildSupersetsView(
+                context: context, workout: state.workout);
+          } else if (state is Archived) {
+            return _buildSupersetsView(
+                context: context, workout: state.workout);
+          } else if (state is Deleted) {
+            return _buildSupersetsView(
+                context: context, workout: state.workout);
+          }
+          return Column();
+        },
+      ),
     );
   }
 

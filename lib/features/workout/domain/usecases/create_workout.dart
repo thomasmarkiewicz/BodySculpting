@@ -13,7 +13,7 @@ class CreateWorkout implements Usecase<Workout, Params> {
 
   @override
   Future<Either<Failure, Workout>> call(Params params) async {
-    return await repository.createWorkout(params.workout);
+    return await repository.createWorkout(params.workout.started());
   }
 }
 

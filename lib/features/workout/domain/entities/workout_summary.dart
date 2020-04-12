@@ -6,6 +6,7 @@ import 'package:meta/meta.dart';
 enum Activity { swim, bike, run, lift, other }
 
 class WorkoutSummary extends Equatable {
+  final String routineId;
   final String name;
   final Activity activity;
   final Units units;
@@ -15,10 +16,19 @@ class WorkoutSummary extends Equatable {
   final Option<String> summary;
 
   @override
-  List<Object> get props =>
-      [name, activity, units, description, start, end, summary];
+  List<Object> get props => [
+        routineId,
+        name,
+        activity,
+        units,
+        description,
+        start,
+        end,
+        summary,
+      ];
 
   WorkoutSummary({
+    @required this.routineId,
     @required this.name,
     @required this.activity,
     @required this.units,

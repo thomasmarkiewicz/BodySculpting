@@ -30,37 +30,41 @@ void main() {
     final testActivity = Activity.lift;
     final testTemplates = [
       Workout(
-          activity: Activity.lift,
-          name: "Barbbell Lifts 5x5 A",
-          description: some("Squat, Bench, Deadlift"),
-          units: UnitsModel(weight: "lb", distance: "km"),
-          supersets: [
-            [
-              ExerciseSet(
-                  exerciseId: "0537cd19644c",
-                  exerciseName: "Squats",
-                  targetWeight: 45,
-                  sets: [
-                    Set(targetReps: 5, targetRest: 180),
-                  ])
-            ],
-          ]),
+        routineId: "1",
+        activity: Activity.lift,
+        name: "Barbbell Lifts 5x5 A",
+        description: some("Squat, Bench, Deadlift"),
+        units: UnitsModel(weight: "lb", distance: "km"),
+        supersets: [
+          [
+            ExerciseSet(
+                exerciseId: "0537cd19644c",
+                exerciseName: "Squats",
+                targetWeight: 45,
+                sets: [
+                  Set(targetReps: 5, targetRest: 180),
+                ])
+          ],
+        ],
+      ),
       Workout(
-          activity: Activity.lift,
-          name: "Barbbell Lifts 5x5 B",
-          description: some("Squat, Shoulder Press, Rows"),
-          units: UnitsModel(weight: "lb", distance: "km"),
-          supersets: [
-            [
-              ExerciseSet(
-                  exerciseId: "0537cd19644c",
-                  exerciseName: "Squats",
-                  targetWeight: 45,
-                  sets: [
-                    Set(targetReps: 5, targetRest: 180),
-                  ])
-            ],
-          ]),
+        routineId: "2",
+        activity: Activity.lift,
+        name: "Barbbell Lifts 5x5 B",
+        description: some("Squat, Shoulder Press, Rows"),
+        units: UnitsModel(weight: "lb", distance: "km"),
+        supersets: [
+          [
+            ExerciseSet(
+                exerciseId: "0537cd19644c",
+                exerciseName: "Squats",
+                targetWeight: 45,
+                sets: [
+                  Set(targetReps: 5, targetRest: 180),
+                ])
+          ],
+        ],
+      ),
     ];
 
     blocTest(

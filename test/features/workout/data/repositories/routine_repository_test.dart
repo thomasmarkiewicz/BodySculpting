@@ -26,6 +26,7 @@ void main() {
   group('getWorkoutTemplates', () {
     final testWorkoutTemplateList = [
       WorkoutModel(
+        routineId: "1",
         activity: Activity.lift,
         name: 'Barbbell Lifts 3x10 A',
         description: some('Squat, Bench, Press'),

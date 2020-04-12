@@ -1,7 +1,7 @@
 import 'package:bodysculpting/features/workout/data/models/workout_model.dart';
 import 'package:bodysculpting/features/workout/data/models/workout_summary_model.dart';
 import 'package:bodysculpting/features/workout/domain/entities/workout.dart';
-import 'package:dartz/dartz.dart';
+import 'package:bodysculpting/features/workout/domain/entities/workout_summary.dart';
 import 'package:meta/meta.dart';
 
 abstract class AbstractWorkoutLocalDataSource {
@@ -13,10 +13,11 @@ abstract class AbstractWorkoutLocalDataSource {
   });
   Future<Workout> getWorkout({
     @required DateTime start,
-    @required Option<DateTime> end,
+    @required Activity activity,
   });
   Future<Workout> deleteWorkout({
     @required DateTime start,
     @required DateTime end,
+    @required Activity activity,
   });
 }

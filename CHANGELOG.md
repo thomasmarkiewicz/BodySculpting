@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- hive: web-compatible local storage
+- web app now works
+
+### Changed
+
+- presenting workouts in descending order
+- presenting routines in alphabetical order
+
+### Removed
+
+- json local storage (it didn't work for the web)
+
 ## [0.0.1] - Public Beta - 2020-04-08
 
 ### Added

@@ -17,6 +17,7 @@ class DeleteWorkout implements Usecase<Workout, DeleteWorkoutParams> {
     return await repository.deleteWorkout(
       start: params.workout.start.getOrElse(() => throw CacheException()),
       end: params.workout.end.getOrElse(() => throw CacheException()),
+      activity: params.workout.activity,
     );
   }
 }

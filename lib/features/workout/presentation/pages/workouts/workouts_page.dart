@@ -23,7 +23,7 @@ class WorkoutsPage extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Body Sculpting IO', key: Key('app-bar-title')),
+          title: Text('Body Sculpting', key: Key('app-bar-title')),
         ),
         body: SingleChildScrollView(
           child: _buildBody(),
