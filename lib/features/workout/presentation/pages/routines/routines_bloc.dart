@@ -38,7 +38,10 @@ class RoutinesBloc extends Bloc<RoutinesEvent, RoutinesState> {
     final result = await getRoutines(Params(activity: event.activity));
     yield result.fold(
       (failure) => Error(message: _mapFailureToMessage(failure)),
-      (templates) => Loaded(templates),
+      (routines) {
+        routines.sort((a, b) => a.name.compareTo(b.name));
+        return Loaded(routines);
+      },
     );
   }
 
