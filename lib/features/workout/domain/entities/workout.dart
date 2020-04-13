@@ -104,7 +104,10 @@ class Workout extends WorkoutSummary {
       end: this.end,
       summary: this.summary,
       supersets: supersets,
-      resting: some(DateTime.now()),
+      resting: some(DateTime.now().add(Duration(
+          seconds: supersets[supersetIndex][exerciseSetIndex]
+              .sets[repIndex]
+              .targetRest))),
     );
   }
 
