@@ -21,6 +21,7 @@ void main() {
     start: some(DateTime(2020, 4, 25, 17, 30, 00)),
     end: some(DateTime(2020, 4, 25, 18, 00, 00)),
     summary: some("Optional summary"),
+    resting: none(),
     supersets: [
       [
         ExerciseSetModel(

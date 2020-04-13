@@ -19,6 +19,7 @@ class WorkoutModel extends Workout {
     Option<DateTime> start,
     Option<DateTime> end,
     Option<String> summary,
+    Option<DateTime> resting,
     @required List<List<ExerciseSetModel>> supersets,
   }) : super(
           routineId: routineId,
@@ -31,6 +32,7 @@ class WorkoutModel extends Workout {
           end: end,
           summary: summary,
           supersets: supersets,
+          resting: resting,
         );
 
   factory WorkoutModel.from(Workout workout) {
@@ -55,6 +57,7 @@ class WorkoutModel extends Workout {
       end: workout.end,
       summary: workout.summary,
       supersets: supersetList,
+      resting: workout.resting,
     );
   }
 
@@ -85,6 +88,9 @@ class WorkoutModel extends Workout {
       end: json.containsKey('end') ? some(DateTime.parse(json['end'])) : none(),
       summary: json.containsKey('summary') ? some(json['summary']) : none(),
       supersets: supersetList,
+      resting: json.containsKey('resting')
+          ? some(DateTime.parse(json['resting']))
+          : none(),
     );
   }
 
@@ -121,6 +127,11 @@ class WorkoutModel extends Workout {
     summary.fold(
       () => {},
       (s) => map.addAll({'summary': s}),
+    );
+
+    resting.fold(
+      () => {},
+      (r) => map.addAll({'resting': r.toIso8601String()}),
     );
 
     return map;
