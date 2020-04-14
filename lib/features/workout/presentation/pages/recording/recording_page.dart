@@ -23,7 +23,7 @@ class RecordingPage extends StatelessWidget {
           title: Text('${routine.name}'),
         ),
         body: _buildBody(),
-        floatingActionButton: RestingTimerFab(),
+        floatingActionButton: RestingTimerFab(soundpool: sl()),
       ),
     );
   }

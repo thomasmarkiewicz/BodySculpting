@@ -1,12 +1,18 @@
 import 'dart:async';
 import 'package:bodysculpting/core/util/format.dart';
 import 'package:bodysculpting/features/workout/domain/entities/workout.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:soundpool/soundpool.dart';
 import '../recording_bloc.dart';
 
 class RestingTimerFab extends StatefulWidget {
-  const RestingTimerFab({Key key}) : super(key: key);
+  final Soundpool soundpool;
+  const RestingTimerFab({Key key, @required Soundpool soundpool})
+      : this.soundpool = soundpool,
+        super(key: key);
 
   @override
   _RestingTimerFabState createState() => _RestingTimerFabState();
@@ -15,8 +21,20 @@ class RestingTimerFab extends StatefulWidget {
 class _RestingTimerFabState extends State<RestingTimerFab> {
   Timer _timer;
   int _seconds;
+  int _halfWay;
+  Future<int> _midwaySoundId;
+  Future<int> _finalSoundId;
+  int _alarmMidwaySoundStreamId;
+  int _alarmFindaySoundStreamId;
+  bool isWeb = kIsWeb;
+
+  void initState() {
+    _midwaySoundId = _loadMidwaySound();
+    _finalSoundId = _loadFinalSound();
+  }
 
   void startTimer() {
+    if (_timer != null) _timer.cancel();
     const oneSec = const Duration(seconds: 1);
     _timer = new Timer.periodic(
       oneSec,
@@ -26,6 +44,11 @@ class _RestingTimerFabState extends State<RestingTimerFab> {
             timer.cancel();
           } else {
             _seconds = _seconds - 1;
+            if (_seconds == _halfWay + 2) {
+              _playMidwaySound();
+            } else if (_seconds == 2) {
+              _playFinalSound();
+            }
           }
         },
       ),
@@ -49,6 +72,7 @@ class _RestingTimerFabState extends State<RestingTimerFab> {
               final diff = resting.difference(DateTime.now());
               setState(() {
                 _seconds = diff.inSeconds;
+                _halfWay = _seconds ~/ 2;
               });
               startTimer();
             },
@@ -78,13 +102,13 @@ class _RestingTimerFabState extends State<RestingTimerFab> {
   }
 
   Widget _buildFab(BuildContext context, Workout workout) {
-    return _seconds == 0
+    return _seconds < 1
         ? Container(width: 0, height: 0)
         : FloatingActionButton.extended(
             label: SizedBox(
-              width: 44,
+              width: 88,
               child: Text(
-                Format.secondsAsMinutesAndSecondsString(_seconds),
+                "Rest ${Format.secondsAsMinutesAndSecondsString(_seconds)}",
                 key: Key('resting-fab'),
               ),
             ),
@@ -95,5 +119,25 @@ class _RestingTimerFabState extends State<RestingTimerFab> {
               _seconds = 0;
             },
           );
+  }
+
+  Future<int> _loadMidwaySound() async {
+    var bell1 = await rootBundle.load("sounds/bell1.mp3");
+    return await widget.soundpool.load(bell1);
+  }
+
+  Future<int> _loadFinalSound() async {
+    var bell5 = await rootBundle.load("sounds/bell5.mp3");
+    return await widget.soundpool.load(bell5);
+  }
+
+  Future<void> _playMidwaySound() async {
+    var _alarmSound = await _midwaySoundId;
+    _alarmMidwaySoundStreamId = await widget.soundpool.play(_alarmSound);
+  }
+
+  Future<void> _playFinalSound() async {
+    var _alarmSound = await _finalSoundId;
+    _alarmMidwaySoundStreamId = await widget.soundpool.play(_alarmSound);
   }
 }
