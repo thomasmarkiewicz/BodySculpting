@@ -24,11 +24,10 @@ class _RestingTimerFabState extends State<RestingTimerFab> {
   int _halfWay;
   Future<int> _midwaySoundId;
   Future<int> _finalSoundId;
-  int _alarmMidwaySoundStreamId;
-  int _alarmFindaySoundStreamId;
-  bool isWeb = kIsWeb;
+  //bool isWeb = kIsWeb;
 
   void initState() {
+    super.initState();
     _midwaySoundId = _loadMidwaySound();
     _finalSoundId = _loadFinalSound();
   }
@@ -133,11 +132,11 @@ class _RestingTimerFabState extends State<RestingTimerFab> {
 
   Future<void> _playMidwaySound() async {
     var _alarmSound = await _midwaySoundId;
-    _alarmMidwaySoundStreamId = await widget.soundpool.play(_alarmSound);
+    await widget.soundpool.play(_alarmSound);
   }
 
   Future<void> _playFinalSound() async {
     var _alarmSound = await _finalSoundId;
-    _alarmMidwaySoundStreamId = await widget.soundpool.play(_alarmSound);
+    await widget.soundpool.play(_alarmSound);
   }
 }
