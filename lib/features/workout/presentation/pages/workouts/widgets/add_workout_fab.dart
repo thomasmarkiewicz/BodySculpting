@@ -58,7 +58,7 @@ class AddWorkoutFloatingActionButton extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   ListTile(
-                    leading: Icon(Icons.ac_unit),
+                    leading: Icon(Icons.fitness_center),
                     title: Text('Lift'),
                     onTap: () => _onActivityTapped(
                       bottomSheetContext: context,
@@ -67,7 +67,7 @@ class AddWorkoutFloatingActionButton extends StatelessWidget {
                     ),
                   ),
                   ListTile(
-                    leading: Icon(Icons.accessibility_new),
+                    leading: Icon(Icons.pool),
                     title: Text('Swim'),
                     onTap: () => _onActivityTapped(
                       bottomSheetContext: context,
@@ -77,7 +77,7 @@ class AddWorkoutFloatingActionButton extends StatelessWidget {
                     enabled: false,
                   ),
                   ListTile(
-                    leading: Icon(Icons.assessment),
+                    leading: Icon(Icons.directions_bike),
                     title: Text('Bike'),
                     onTap: () => _onActivityTapped(
                       bottomSheetContext: context,
@@ -87,7 +87,7 @@ class AddWorkoutFloatingActionButton extends StatelessWidget {
                     enabled: false,
                   ),
                   ListTile(
-                    leading: Icon(Icons.radio),
+                    leading: Icon(Icons.directions_run),
                     title: Text('Run'),
                     onTap: () => _onActivityTapped(
                       bottomSheetContext: context,
