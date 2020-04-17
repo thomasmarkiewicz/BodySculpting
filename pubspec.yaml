@@ -27,7 +27,7 @@ description: Lift, swim, bike, run - sculpt your body and stay healthy.
 # where candidate will usually remain at 00 but could increase if same semver
 # needs to get uploaded to Google again for some reason.
 #
-version: 0.0.1+00000100
+version: 0.0.2+00000200
 
 environment:
   sdk: '>=2.1.0 <3.0.0'

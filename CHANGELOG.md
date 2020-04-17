@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.2] - 2020-04-17
+
 ### Added
 
 - hive: web-compatible local storage
@@ -25,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - json local storage (it didn't work for the web)
 
-## [0.0.1] - Public Beta - 2020-04-08
+## [0.0.1] - 2020-04-08
 
 ### Added
 
