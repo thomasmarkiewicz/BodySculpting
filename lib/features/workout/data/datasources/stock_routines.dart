@@ -208,8 +208,9 @@ final routines = [
     routineId: "e6596d74fb9a",
     program: "Dumbbell Supersets",
     activity: Activity.lift,
-    name: "Dumbbell Supersets Break-In A",
-    description: some("Dumbbell supersets starting routine"),
+    name: "Dumbbell Supersets A",
+    description: some(
+        "Day 1 of dumbbell circuits with 90 second breaks after each exercise"),
     units: UnitsModel(
       weight: "lb",
       distance: "mi",
@@ -230,8 +231,8 @@ final routines = [
           exerciseName: "Push-ups",
           targetWeight: 0,
           sets: [
-            SetModel(targetReps: 15, targetRest: 9),
-            SetModel(targetReps: 15, targetRest: 9),
+            SetModel(targetReps: 15, targetRest: 90),
+            SetModel(targetReps: 15, targetRest: 90),
           ],
         ),
       ],
@@ -298,11 +299,268 @@ final routines = [
     ],
   ),
   WorkoutModel(
+    routineId: "70f4a484fc06",
+    program: "Dumbbell Supersets",
+    activity: Activity.lift,
+    name: "Dumbbell Supersets B",
+    description: some(
+        "Day 2 of dumbbell circuits with 90 second breaks after each exercise"),
+    units: UnitsModel(
+      weight: "lb",
+      distance: "mi",
+    ),
+    supersets: [
+      [
+        ExerciseSetModel(
+          exerciseId: "69ff1785ec1b",
+          exerciseName: "Dumbbell Squats",
+          targetWeight: 20,
+          sets: [
+            SetModel(targetReps: 15, targetRest: 90),
+            SetModel(targetReps: 15, targetRest: 90),
+          ],
+        ),
+        ExerciseSetModel(
+          exerciseId: "7d6b7ce13c84",
+          exerciseName: "Dumbbell Lunges",
+          targetWeight: 20,
+          sets: [
+            SetModel(targetReps: 15, targetRest: 90),
+            SetModel(targetReps: 15, targetRest: 90),
+          ],
+        ),
+      ],
+      [
+        ExerciseSetModel(
+          exerciseId: "69ff1785ec1b",
+          exerciseName: "Dumbbell Squats (ballet)",
+          targetWeight: 20,
+          sets: [
+            SetModel(targetReps: 15, targetRest: 90),
+            SetModel(targetReps: 15, targetRest: 90),
+          ],
+        ),
+        ExerciseSetModel(
+          exerciseId: "bb69814ba53a",
+          exerciseName: "Dumbbell Shoulder Press",
+          targetWeight: 10,
+          sets: [
+            SetModel(targetReps: 15, targetRest: 90),
+            SetModel(targetReps: 15, targetRest: 90),
+          ],
+        ),
+      ],
+      [
+        ExerciseSetModel(
+          exerciseId: "ca181a7a5d84",
+          exerciseName: "Dumbbell Deadlifts",
+          targetWeight: 20,
+          sets: [
+            SetModel(targetReps: 15, targetRest: 90),
+            SetModel(targetReps: 15, targetRest: 90),
+          ],
+        ),
+        ExerciseSetModel(
+          exerciseId: "b9191529d1cc",
+          exerciseName: "Dumbbell Bent Over Lateral Raises",
+          targetWeight: 5,
+          sets: [
+            SetModel(targetReps: 15, targetRest: 90),
+            SetModel(targetReps: 15, targetRest: 90),
+          ],
+        ),
+      ],
+    ],
+  ),
+  WorkoutModel(
+    routineId: "7d881e8df9df",
+    program: "Dumbbell Supersets",
+    activity: Activity.lift,
+    name: "Dumbbell Supersets C",
+    description: some(
+        'Day 1 of dumbbell circuits with 60 second breaks after each circuit'),
+    units: UnitsModel(
+      weight: "lb",
+      distance: "mi",
+    ),
+    supersets: [
+      [
+        ExerciseSetModel(
+          exerciseId: "3e904e0972c4",
+          exerciseName: "Dumbbell Rows (one arm)",
+          targetWeight: 20,
+          sets: [
+            SetModel(targetReps: 10, targetRest: 0),
+            SetModel(targetReps: 10, targetRest: 0),
+            SetModel(targetReps: 10, targetRest: 0),
+          ],
+        ),
+        ExerciseSetModel(
+          exerciseId: "19b420dafb22",
+          exerciseName: "Push-ups",
+          targetWeight: 0,
+          sets: [
+            SetModel(targetReps: 10, targetRest: 60),
+            SetModel(targetReps: 10, targetRest: 60),
+            SetModel(targetReps: 10, targetRest: 60),
+          ],
+        ),
+      ],
+      [
+        ExerciseSetModel(
+          exerciseId: "490d6d0ec5f0",
+          exerciseName: "Dumbbell Rows (two arms)",
+          targetWeight: 20,
+          sets: [
+            SetModel(targetReps: 10, targetRest: 0),
+            SetModel(targetReps: 10, targetRest: 0),
+            SetModel(targetReps: 10, targetRest: 0),
+          ],
+        ),
+        ExerciseSetModel(
+          exerciseId: "4bfc6352fcfb",
+          exerciseName: "Dumbbell Flys (flat)",
+          targetWeight: 10,
+          sets: [
+            SetModel(targetReps: 10, targetRest: 60),
+            SetModel(targetReps: 10, targetRest: 60),
+            SetModel(targetReps: 10, targetRest: 60),
+          ],
+        ),
+      ],
+      [
+        ExerciseSetModel(
+          exerciseId: "fcea91c905fa",
+          exerciseName: "Dumbbell Curls",
+          targetWeight: 10,
+          sets: [
+            SetModel(targetReps: 10, targetRest: 0),
+            SetModel(targetReps: 10, targetRest: 0),
+            SetModel(targetReps: 10, targetRest: 0),
+          ],
+        ),
+        ExerciseSetModel(
+          exerciseId: "4cab4ad2ce41",
+          exerciseName: "Dumbbell Extensions (lying)",
+          targetWeight: 10,
+          sets: [
+            SetModel(targetReps: 10, targetRest: 60),
+            SetModel(targetReps: 10, targetRest: 60),
+            SetModel(targetReps: 10, targetRest: 60),
+          ],
+        ),
+      ],
+      [
+        ExerciseSetModel(
+          exerciseId: "ebe07cb7b8a4",
+          exerciseName: "Dumbbell Hammer Curls",
+          targetWeight: 10,
+          sets: [
+            SetModel(targetReps: 10, targetRest: 0),
+            SetModel(targetReps: 10, targetRest: 0),
+            SetModel(targetReps: 10, targetRest: 0),
+          ],
+        ),
+        ExerciseSetModel(
+          exerciseId: "3febf26fdef2",
+          exerciseName: "Dumbbell Extensions (overhead)",
+          targetWeight: 10,
+          sets: [
+            SetModel(targetReps: 10, targetRest: 60),
+            SetModel(targetReps: 10, targetRest: 60),
+            SetModel(targetReps: 10, targetRest: 60),
+          ],
+        ),
+      ],
+    ],
+  ),
+  WorkoutModel(
+    routineId: "b1f5109a6f8a",
+    program: "Dumbbell Supersets",
+    activity: Activity.lift,
+    name: "Dumbbell Supersets D",
+    description: some(
+        "Day 2 of dumbbell circuits with 60 second breaks after each circuit"),
+    units: UnitsModel(
+      weight: "lb",
+      distance: "mi",
+    ),
+    supersets: [
+      [
+        ExerciseSetModel(
+          exerciseId: "69ff1785ec1b",
+          exerciseName: "Dumbbell Squats",
+          targetWeight: 20,
+          sets: [
+            SetModel(targetReps: 10, targetRest: 0),
+            SetModel(targetReps: 10, targetRest: 0),
+            SetModel(targetReps: 10, targetRest: 0),
+          ],
+        ),
+        ExerciseSetModel(
+          exerciseId: "7d6b7ce13c84",
+          exerciseName: "Dumbbell Lunges",
+          targetWeight: 20,
+          sets: [
+            SetModel(targetReps: 10, targetRest: 60),
+            SetModel(targetReps: 10, targetRest: 60),
+            SetModel(targetReps: 10, targetRest: 60),
+          ],
+        ),
+      ],
+      [
+        ExerciseSetModel(
+          exerciseId: "69ff1785ec1b",
+          exerciseName: "Dumbbell Squats (ballet)",
+          targetWeight: 20,
+          sets: [
+            SetModel(targetReps: 10, targetRest: 0),
+            SetModel(targetReps: 10, targetRest: 0),
+            SetModel(targetReps: 10, targetRest: 0),
+          ],
+        ),
+        ExerciseSetModel(
+          exerciseId: "bb69814ba53a",
+          exerciseName: "Dumbbell Shoulder Press",
+          targetWeight: 10,
+          sets: [
+            SetModel(targetReps: 10, targetRest: 60),
+            SetModel(targetReps: 10, targetRest: 60),
+            SetModel(targetReps: 10, targetRest: 60),
+          ],
+        ),
+      ],
+      [
+        ExerciseSetModel(
+          exerciseId: "ca181a7a5d84",
+          exerciseName: "Dumbbell Deadlifts",
+          targetWeight: 20,
+          sets: [
+            SetModel(targetReps: 10, targetRest: 0),
+            SetModel(targetReps: 10, targetRest: 0),
+            SetModel(targetReps: 10, targetRest: 0),
+          ],
+        ),
+        ExerciseSetModel(
+          exerciseId: "b9191529d1cc",
+          exerciseName: "Dumbbell Bent Over Lateral Raises",
+          targetWeight: 5,
+          sets: [
+            SetModel(targetReps: 10, targetRest: 60),
+            SetModel(targetReps: 10, targetRest: 60),
+            SetModel(targetReps: 10, targetRest: 60),
+          ],
+        ),
+      ],
+    ],
+  ),
+  WorkoutModel(
     routineId: "5652c00c5895",
     program: "Dumbbell Supersets",
     activity: Activity.lift,
-    name: "Dumbbell Supersets A",
-    description: some("Day 1"),
+    name: "Dumbbell Supersets E",
+    description: some(
+        "Day 1 of heavier and longer circuits with 60 second break after each circuit"),
     units: UnitsModel(
       weight: "lb",
       distance: "mi",
@@ -402,47 +660,88 @@ final routines = [
       ],
     ],
   ),
-  /*
-          WorkoutModel(
-            activity: Activity.lift,
-            name: "Madcow 5x5 A",
-            description: some("Squat, Bench, Deadlift"),
-            supersets: [
-              [
-                ExerciseSetModel(
-                  exerciseId: "0537cd19644c",
-                  exerciseName: "Squats",
-                  sets: [
-                    // Note: to support this each set needs a percentage of a target final weight being lifted
-                    //       how can UI display that concisely w/o degrading exparience of other workouts?
-                    SetMetaDataModel(reps: 5, weight: 0.6, rest: 180),
-                    SetMetaDataModel(reps: 5, weight: 0.7, rest: 180),
-                    SetMetaDataModel(reps: 5, weight: 0.8, rest: 180),
-                    SetMetaDataModel(reps: 5, weight: 0.9, rest: 180),
-                    SetMetaDataModel(reps: 5, weight: 1.0, rest: 180)
-                  ],
-                ),
-              ],
-              [
-                ExerciseSetModel(
-                  exerciseId: "33871bf6de60",
-                  exerciseName: "Bench Press",
-                  sets: [
-                    SetMetaDataModel(reps: 5, rest: 180),
-                    SetMetaDataModel(reps: 5, rest: 180),
-                    SetMetaDataModel(reps: 5, rest: 180),
-                    SetMetaDataModel(reps: 5, rest: 180),
-                    SetMetaDataModel(reps: 5, rest: 180)
-                  ],
-                ),
-              ],
-              [
-                ExerciseSetModel(
-                  exerciseId: "ca1240b16dab",
-                  exerciseName: "Deadlifts",
-                  sets: [SetMetaDataModel(reps: 5, rest: 180)],
-                ),
-              ],
-            ],
-          ), */
+  WorkoutModel(
+    routineId: "0912ba290464",
+    program: "Dumbbell Supersets",
+    activity: Activity.lift,
+    name: "Dumbbell Supersets F",
+    description: some(
+        "Day 2 of heavier and longer circuits with 60 second break after each circuit"),
+    units: UnitsModel(
+      weight: "lb",
+      distance: "mi",
+    ),
+    supersets: [
+      [
+        ExerciseSetModel(
+          exerciseId: "69ff1785ec1b",
+          exerciseName: "Dumbbell Squats",
+          targetWeight: 20,
+          sets: [
+            SetModel(targetReps: 8, targetRest: 0),
+            SetModel(targetReps: 8, targetRest: 0),
+            SetModel(targetReps: 8, targetRest: 0),
+            SetModel(targetReps: 8, targetRest: 0),
+          ],
+        ),
+        ExerciseSetModel(
+          exerciseId: "7d6b7ce13c84",
+          exerciseName: "Dumbbell Lunges",
+          targetWeight: 20,
+          sets: [
+            SetModel(targetReps: 8, targetRest: 0),
+            SetModel(targetReps: 8, targetRest: 0),
+            SetModel(targetReps: 8, targetRest: 0),
+            SetModel(targetReps: 8, targetRest: 0),
+          ],
+        ),
+        ExerciseSetModel(
+          exerciseId: "bb69814ba53a",
+          exerciseName: "Dumbbell Shoulder Press",
+          targetWeight: 10,
+          sets: [
+            SetModel(targetReps: 8, targetRest: 60),
+            SetModel(targetReps: 8, targetRest: 60),
+            SetModel(targetReps: 8, targetRest: 60),
+            SetModel(targetReps: 8, targetRest: 60),
+          ],
+        ),
+      ],
+      [
+        ExerciseSetModel(
+          exerciseId: "69ff1785ec1b",
+          exerciseName: "Dumbbell Squats (ballet)",
+          targetWeight: 20,
+          sets: [
+            SetModel(targetReps: 8, targetRest: 0),
+            SetModel(targetReps: 8, targetRest: 0),
+            SetModel(targetReps: 8, targetRest: 0),
+            SetModel(targetReps: 8, targetRest: 0),
+          ],
+        ),
+        ExerciseSetModel(
+          exerciseId: "ca181a7a5d84",
+          exerciseName: "Dumbbell Deadlifts",
+          targetWeight: 20,
+          sets: [
+            SetModel(targetReps: 8, targetRest: 0),
+            SetModel(targetReps: 8, targetRest: 0),
+            SetModel(targetReps: 8, targetRest: 0),
+            SetModel(targetReps: 8, targetRest: 0),
+          ],
+        ),
+        ExerciseSetModel(
+          exerciseId: "b9191529d1cc",
+          exerciseName: "Dumbbell Bent Over Lateral Raises",
+          targetWeight: 5,
+          sets: [
+            SetModel(targetReps: 8, targetRest: 60),
+            SetModel(targetReps: 8, targetRest: 60),
+            SetModel(targetReps: 8, targetRest: 60),
+            SetModel(targetReps: 8, targetRest: 60),
+          ],
+        ),
+      ],
+    ],
+  ),
 ];

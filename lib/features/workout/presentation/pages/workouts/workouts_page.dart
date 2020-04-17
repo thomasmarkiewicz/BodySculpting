@@ -110,9 +110,12 @@ class WorkoutsPage extends StatelessWidget {
           ),
           Visibility(
             visible: summaries.length == 0,
-            child: Text(
-              "It's lonely here, please add some workouts!!!",
-              key: Key('empty-message'),
+            child: ListTile(
+              //leading: FlutterLogo(size: 72.0),
+              title: Text(
+                "It's lonely here, please add some workouts!!!",
+                key: Key('empty-message'),
+              ),
             ),
           ),
         ],
