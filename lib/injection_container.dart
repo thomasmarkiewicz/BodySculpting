@@ -4,6 +4,7 @@ import 'package:bodysculpting/features/workout/domain/usecases/get_workout_summa
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:soundpool/soundpool.dart';
 import 'features/workout/data/datasources/abstract_workout_local_data_source.dart';
 import 'features/workout/data/datasources/abstract_routine_local_data_source.dart';
 import 'features/workout/data/datasources/hive_local_data_source.dart';
@@ -32,6 +33,7 @@ Future<void> init() async {
   await repositories();
   await datasources();
   await core();
+  await other();
 }
 
 // Register blocks as factories
@@ -96,4 +98,9 @@ Future<void> datasources() async {
 Future<void> core() async {
   // TODO: don't need it yet, but will soon...
   // sl.registerLazySingleton(() => InputConverter());
+}
+
+Future<void> other() async {
+  sl.registerLazySingleton<Soundpool>(
+      () => Soundpool(streamType: StreamType.notification));
 }

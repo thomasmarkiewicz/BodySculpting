@@ -1,5 +1,6 @@
 import 'package:bodysculpting/features/workout/domain/entities/workout.dart';
 import 'package:bodysculpting/features/workout/presentation/pages/recording/recording_bloc.dart';
+import 'package:bodysculpting/features/workout/presentation/pages/recording/widgets/resting_timer_fab.dart';
 import 'package:bodysculpting/features/workout/presentation/pages/recording/widgets/superset_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,6 +23,7 @@ class RecordingPage extends StatelessWidget {
           title: Text('${routine.name}'),
         ),
         body: _buildBody(),
+        floatingActionButton: RestingTimerFab(soundpool: sl()),
       ),
     );
   }

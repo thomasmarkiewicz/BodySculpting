@@ -8,6 +8,7 @@ import 'exercise_set.dart';
 // There can exist only one workout that starts at a specific time
 class Workout extends WorkoutSummary {
   final List<List<ExerciseSet>> supersets;
+  final Option<DateTime> resting;
 
   @override
   List<Object> get props => [supersets];
@@ -22,8 +23,10 @@ class Workout extends WorkoutSummary {
     Option<DateTime> start,
     Option<DateTime> end,
     Option<String> summary,
+    Option<DateTime> resting,
     @required this.supersets,
-  }) : super(
+  })  : this.resting = resting ?? none(),
+        super(
           routineId: routineId,
           program: program,
           name: name,
@@ -46,7 +49,8 @@ class Workout extends WorkoutSummary {
       start: some(DateTime.now()),
       end: this.end,
       summary: this.summary,
-      supersets: supersets,
+      supersets: this.supersets,
+      resting: this.resting,
     );
   }
 
@@ -61,7 +65,8 @@ class Workout extends WorkoutSummary {
       start: this.start,
       end: some(DateTime.now()),
       summary: this.summary,
-      supersets: supersets,
+      supersets: this.supersets,
+      resting: none(),
     );
   }
 
@@ -99,6 +104,10 @@ class Workout extends WorkoutSummary {
       end: this.end,
       summary: this.summary,
       supersets: supersets,
+      resting: some(DateTime.now().add(Duration(
+          seconds: supersets[supersetIndex][exerciseSetIndex]
+              .sets[repIndex]
+              .targetRest))),
     );
   }
 
@@ -139,6 +148,7 @@ class Workout extends WorkoutSummary {
       end: this.end,
       summary: this.summary,
       supersets: supersets,
+      resting: this.resting,
     );
   }
 }
