@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-enum Activity { swim, bike, run, lift, other }
+enum Activity { lift, swim, bike, run, other }
 
 class WorkoutSummary extends Equatable {
   final String routineId;

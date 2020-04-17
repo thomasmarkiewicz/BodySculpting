@@ -1,5 +1,6 @@
 import 'package:bodysculpting/features/workout/domain/entities/workout_summary.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 // TODO: Add animated background to a tile showing workout in progress
 //  see: https://medium.com/@felixblaschke/fancy-background-animations-in-flutter-4163d50f5c37
@@ -19,6 +20,15 @@ class WorkoutSummaryTile extends StatelessWidget {
         workoutSummary.isActive() ? TextStyle(color: Colors.white) : null;
     final TextStyle textStyle =
         workoutSummary.isActive() ? TextStyle(color: Colors.white70) : null;
+
+    final leading = [
+      Icon(Icons.fitness_center),
+      Icon(Icons.pool),
+      Icon(Icons.directions_bike),
+      Icon(Icons.directions_run),
+      Icon(Icons.directions_walk),
+    ];
+
     return Card(
       color: workoutSummary.isActive()
           ? Theme.of(context).accentColor
@@ -27,15 +37,14 @@ class WorkoutSummaryTile extends StatelessWidget {
         //leading: FlutterLogo(size: 72.0),
         title: Text(workoutSummary.name, style: titleStyle),
         subtitle: Text(
-          workoutSummary.description.getOrElse(() => "") +
-              "\n" +
-              workoutSummary.start
-                  .getOrElse(() => DateTime.now())
-                  .toIso8601String(),
+          DateFormat.yMMMMEEEEd().format(workoutSummary.start.fold(
+            () => null,
+            (t) => t,
+          )),
           style: textStyle,
         ),
+        leading: leading[workoutSummary.activity.index],
         //trailing: Icon(Icons.more_vert),
-        isThreeLine: true,
         onTap: this.onTap,
       ),
     );

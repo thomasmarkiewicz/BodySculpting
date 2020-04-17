@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - presenting workouts in descending order
 - presenting routines in alphabetical order
 - activity icons in bottom sheet to match the activity: lift, swim, bike, run
+- workout summary tile now showing an activity icon and a nicer date format
 
 ### Removed
 
