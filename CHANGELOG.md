@@ -9,8 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- TODO: Onboarding
-- TODO: About page
+- script to build linux desktop release and package it as a flatpak
+
+### Changed
+
+- updated linux desktop embedding files to newer generated version
 
 ## [0.0.2] - 2020-04-17
 

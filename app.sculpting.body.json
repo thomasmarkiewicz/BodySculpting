@@ -1,0 +1,35 @@
+{
+    "app-id": "app.sculpting.body",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "master",
+    "sdk": "org.gnome.Sdk",
+    "command": "bs",
+
+    "finish-args": [
+        "--device=all",
+        "--share=ipc",
+        "--socket=wayland",
+        "--socket=x11",
+        "--filesystem=xdg-documents",
+        "--metadata=X-DConf=migrate-path=/org/gnome/dictionary/"
+    ],    
+    "modules": [
+        {
+            "name": "bs",
+            "buildsystem": "simple",
+            "build-commands": [
+                "install -D bs /app/bin/bs",
+                "cp -r data /app/bin",
+                "cp -r lib /app/bin"
+            ],
+            "sources": [
+                {
+                    "type": "dir",
+                    "path": "./build/linux/release/bundle"
+                }
+            ]
+        }
+    ]
+}
+
+
