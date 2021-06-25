@@ -4,6 +4,8 @@
 
 ![Body Sculpting](/assets/github_banner.png)
 
+### Description
+
 My hope is that one day this app can become a viable alternative for keeping track of all of your workouts. Right now it is in its early stages of development and will not preserve workout data between version upgrades - so use it for testing and evaluation purposes only.
 
 It is starting to be somewhat functional however, it includes a few basic weight-lifting routines you can track: 5x5 and 3x10 barbell and some dumbbell circuits. The plan is to eventually support the following activities:
@@ -19,3 +21,7 @@ It is starting to be somewhat functional however, it includes a few basic weight
 - offline first: store data locally on a device
 - online account and logging in is not required for core functionality
 - online account is available as an opt-in to backup, sync, and interact with fellow athletes
+
+### Contact
+- Email: tomek@librem.one
+- Chat: https://matrix.to/#/#bodysculpting:matrix.org
