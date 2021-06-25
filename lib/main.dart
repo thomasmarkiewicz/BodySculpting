@@ -1,13 +1,17 @@
+import 'package:bodysculpting/db/local_datastore.dart';
 import 'package:bodysculpting/screens/workouts_screen.dart';
 import 'package:bodysculpting/state/app_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  await LocalDatastore().init();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  MyApp({Key? key}) : super(key: key);
+
   final lightTheme = ThemeData(
     brightness: Brightness.light,
     primaryColor: Colors.grey.shade800,
@@ -30,7 +34,7 @@ class MyApp extends StatelessWidget {
       create: (context) => AppState(),
       child: MaterialApp(
         title: 'Body Sculpting',
-        home: WorkoutsScreen(),
+        home: const WorkoutsScreen(),
         theme: lightTheme,
         darkTheme: darkTheme,
         //themeMode: ThemeMode.dark, // uncomment to force override for testing

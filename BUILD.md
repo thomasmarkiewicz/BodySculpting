@@ -1,5 +1,11 @@
 # BUILD
 
+Generate Hive adapters:
+```
+flutter packages pub run build_runner build
+```
+
+
 ## Linux Desktop
 
 To build a flakpak of the release binary:

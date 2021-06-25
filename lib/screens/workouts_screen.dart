@@ -20,7 +20,7 @@ class _WorkoutsScreenState extends State<WorkoutsScreen> {
       body: const SingleChildScrollView(
         child: Text("TODO: implement WorkoutsScreen"),
       ),
-      floatingActionButton: WorkoutsFab(),
+      floatingActionButton: const WorkoutsFab(),
     );
   }
 }
